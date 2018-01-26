@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <array name="segment_search_mode_arrays">
+        <item>Read</item>
+        <item>Unread</item>
+    </array>
+
+    <array name="segment_time_mode_arrays">
+        <item>Single</item>
+        <item>Double</item>
+    </array>
+
+    <array name="segment_show_data_mode_arrays">
+        <item>List</item>
+        <item>Card</item>
+    </array>
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SegmentControlView">
+        <attr name="scv_BackgroundSelectedColor" format="reference|color" />
+        <attr name="scv_BackgroundNormalColor" format="reference|color" />
+        <attr name="scv_TextSelectedColor" format="reference|color" />
+        <attr name="scv_TextNormalColor" format="reference|color" />
+        <attr name="scv_FrameColor" format="reference|color" />
+        <attr name="scv_FrameWidth" format="reference|dimension" />
+        <attr name="scv_FrameCornerRadius" format="reference|dimension" />
+        <attr name="scv_TextSize" format="reference|dimension" />
+        <attr name="scv_TextArray" format="reference" />
+        <attr name="scv_SelectedIndex" format="reference|integer" />
+        <attr name="scv_SegmentPaddingHorizontal" format="reference|dimension" />
+        <attr name="scv_SegmentPaddingVertical" format="reference|dimension" />
+        <attr name="scv_Gradient" format="reference|boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="LoadingTextView">
+        <attr name="textStyle">
+            <enum name="noText" value="-1" />
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <attr name="ltv_gravity" format="integer" />
+        <attr name="ltv_textSize" format="dimension" />
+        <attr name="ltv_textColor" format="color" />
+        <attr name="ltv_textPadding" format="dimension" />
+        <attr name="android:text" />
+    </declare-styleable>
+
+    <declare-styleable name="ToolbarControl">
+        <attr name="titleText" format="string" />
+    </declare-styleable>
+
+</resources>

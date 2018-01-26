@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:padding="@dimen/dp_5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/border_white">
+
+            <EditText
+                android:id="@+id/et_deviceId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/EnterMeterId"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="11"
+                android:padding="@dimen/dp_10" />
+
+            <ImageView
+                android:id="@+id/iv_deleteDeviceId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@null"
+                android:padding="@dimen/dp_10"
+                android:src="@drawable/delete_gray" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_search_meter"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginStart="@dimen/dp_10"
+            android:background="@drawable/blue_button_selector"
+            android:text="@string/Search"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_singleDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:layout_marginTop="@dimen/dp_5"
+            android:background="@color/gray_1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+            <ImageView
+                android:id="@+id/iv_lastMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@null"
+                android:padding="@dimen/dp_10"
+                android:src="@drawable/icon_first_page_selector" />
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+            <ImageView
+                android:id="@+id/iv_lastDay"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@null"
+                android:padding="@dimen/dp_10"
+                android:src="@drawable/icon_previous_page_selector" />
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/dp_10"
+                android:text="@string/date_example"
+                android:textSize="@dimen/sp_18" />
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+            <ImageView
+                android:id="@+id/iv_nextDay"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@null"
+                android:padding="@dimen/dp_10"
+                android:src="@drawable/icon_next_page_selector" />
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+            <ImageView
+                android:id="@+id/iv_nextMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@null"
+                android:padding="@dimen/dp_10"
+                android:src="@drawable/icon_last_page_selector" />
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/gray_1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_date_interval"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:layout_marginTop="@dimen/dp_5"
+            android:background="@color/gray_1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+            <TextView
+                android:id="@+id/tv_beginTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/dp_10"
+                android:text="@string/date_example"
+                android:textSize="@dimen/sp_18" />
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/dp_10"
+                android:text="@string/to"
+                android:textSize="@dimen/sp_18" />
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+            <TextView
+                android:id="@+id/tv_endTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/dp_10"
+                android:text="@string/date_example"
+                android:textSize="@dimen/sp_18" />
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/gray_1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_listTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@color/gray_6"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/gray_1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/dp_3"
+                android:text="@string/ReadMeterTime"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/dp_3"
+                android:text="@string/TotalFlow"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/dp_3"
+                android:text="@string/FlowRate"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:gravity="center"
+                android:padding="@dimen/dp_3"
+                android:text="@string/Pressure"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="match_parent"
+                android:background="@color/gray_1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_1"
+            android:background="@color/gray_1" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_space"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_5"
+        android:visibility="gone" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView_historyInformation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbarSize="@dimen/dp_1" />
+
+</LinearLayout>

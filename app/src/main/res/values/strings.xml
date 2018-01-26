@@ -1,0 +1,138 @@
+<resources>
+    <string name="app_name">Pioneer IoT</string>
+    <string name="dialog_loading">loading……</string>
+    <string name="click_again_exit">Click again to exit</string>
+    <string name="InputUsername">Username</string>
+    <string name="InputPassword2">Password</string>
+    <string name="Login">Login</string>
+    <string name="Meter_Manager_Name">Meter_Manager_Name</string>
+    <string name="waterCompanyName">waterCompanyName</string>
+    <string name="fieldName">fieldName</string>
+    <string name="fieldValue">fieldValue</string>
+    <string name="supplierId">supplierId</string>
+    <string name="exchangStationId">exchangStationId</string>
+    <string name="villageId">villageId</string>
+    <string name="buildingId">buildingId</string>
+    <string name="entranceId">entranceId</string>
+    <string name="EnterSearchContent">Enter search content</string>
+    <string name="RecentSearchRecord">Recent search records</string>
+    <string name="LatestData">Latest Data</string>
+    <string name="HistoricalData">Historical Data</string>
+    <string name="SearchSettings">Search Settings</string>
+    <string name="SettingInstructions">Setting Instructions</string>
+    <string name="UnitOfMeasurement">Units of Measurement</string>
+    <string name="LatestDataQuerySettings">Latest Data Query Settings</string>
+    <string name="HistoricalDataQuerySettings">Historical Data Query Settings</string>
+    <string name="DN">DN</string>
+    <string name="NominalDiameterRange">Nominal Diameter Range</string>
+    <string name="QueryMode">Query Mode</string>
+    <string name="TimeRange">Time Range</string>
+    <string name="ItemsPerPage">Items Per Page</string>
+    <string name="TimeMode">Date Selection  Mode</string>
+    <string name="DataDisplayMode">Data Display Mode</string>
+    <string name="days">days</string>
+    <string name="items">items</string>
+    <string name="items_pages">0records/0pages</string>
+    <string name="ShowAdvancedFilter">Show Advanced Filters</string>
+    <string name="HideAdvancedFilter">Hide Advanced Filters</string>
+    <string name="mode">Mode</string>
+    <string name="Hierarchy">Hierarchy:</string>
+    <string name="Number">No.</string>
+    <string name="MeterSN">Meter SN</string>
+    <string name="Username">Username</string>
+    <string name="TimeRange2">Last</string>
+    <string name="NominalDiameter">Nominal diameter</string>
+    <string name="total_page">%1$ddata/%2$dpages</string>
+    <string name="all">All</string>
+    <string name="OtherOptions">Other Options</string>
+    <string name="AddOptions">Add</string>
+    <string name="DeleteAll">Delete</string>
+    <string name="CollapseAll">Collapse</string>
+    <string name="ExpandAll">Expand</string>
+    <string name="Search">Search</string>
+    <string name="EnterMeterId">Enter Meter SN</string>
+    <string name="ReadMeterTime">Read Time</string>
+    <string name="CommitTime">Commit Time</string>
+    <string name="TotalFlow">Total Flow</string>
+    <string name="FlowRate">Flow Rate</string>
+    <string name="Pressure">Pressure</string>
+    <string name="MeterStatus">Status</string>
+    <string name="ValveStatus">Valve</string>-
+    <string name="ReverseFlow">Reverse Flow</string>
+    <string name="Name">Name</string>
+    <string name="Unit">Unit</string>
+    <string name="Page">Page</string>
+    <string name="HierarchyAddress">Hierarchy</string>
+    <string name="Only5FiltersCanBeAdded">Only 5 filters can be added</string>
+    <string name="CustomFiltering">Custom Filtering</string>
+    <string name="ComparisonItems">Comparison Items</string>
+    <string name="ComparisonOperators">Comparison Operators</string>
+    <string name="ComparisonValues">Comparison Values</string>
+    <string name="EnterComparisonValues">Enter Comparison Values</string>
+    <string name="dialog_save">Save</string>
+    <string name="dialog_clear">Clear</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_input_continue">Continue</string>
+    <string name="conditions">\'%1$s&#160;%2$s&#160;%3$s\' and other %4$d conditions</string>
+    <string name="EnterTheMeterSNOrAPartOfIt">Enter a meter SN or a part of it</string>
+    <string name="EnterAUsernameOrAPartOfIt">Enter a username or a part of it</string>
+    <string name="EnterTotalFlowValue">Enter a total flow value</string>
+    <string name="EnterPressureValue">Enter a pressure value</string>
+    <string name="EnterFlowRateValue">Enter a flow rate value</string>
+    <string name="Clear">Clear</string>
+    <string name="CurrentHierarchy">Current Hierarchy</string>
+    <string name="OK">OK</string>
+    <string name="WaterSupplyStation">Supply Station</string>
+    <string name="Community">Community</string>
+    <string name="Building">Building</string>
+    <string name="Unit2">Unit</string>
+    <string name="date_example">2017年12月12日</string>
+    <string name="to">~</string>
+    <string name="warning_delete_history">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;您将删除该条搜索记录，是否继续删除？</string>
+    <string name="range_meterSize_DN">%1$s~%2$s</string>
+    <string name="date">%1$s</string>
+    <string name="Put_MeterId_Chart">Put_MeterId_Chart</string>
+    <string name="timeRange_search_waterMeter">水表查询时间设置</string>
+    <string name="rowsPerPage_search_waterMeter">每页显示条数设置</string>
+    <string name="exampleConsumption">%1$sm³</string>
+    <string name="exampleFlowRate">%1$sm³/h</string>
+    <string name="example_pressure">%1$sbar</string>
+    <string name="Logout">Log out</string>
+
+    <string-array name="spinner_content_filtering">
+        <item>Meter SN</item>
+        <item>Username</item>
+        <item>Total Flow</item>
+        <item>Pressure</item>
+        <item>Flow Rate</item>
+        <item>Meter Status</item>
+        <item>Valve Status</item>
+    </string-array>
+
+    <string-array name="spinner_comparison_operators">
+        <item>&#160;&#160;&#160;&lt;&#160;&#160;&#160;</item>
+        <item>&#160;&#160;&#160;=&#160;&#160;&#160;</item>
+        <item>&#160;&#160;&#160;&gt;&#160;&#160;&#160;</item>
+        <item>Contains</item>
+    </string-array>
+
+    <string-array name="spinner_meter_status">
+        <item>All</item>
+        <item>Normal</item>
+        <item>Abnormal</item>
+        <item>No water</item>
+        <item>Leakage</item>
+        <item>Reverse</item>
+        <item>Excessive flow rate</item>
+        <item>Short circuit</item>
+        <item>Open circuit</item>
+        <item>Circuit fault</item>
+    </string-array>
+
+    <string-array name="spinner_valve_status">
+        <item>Open</item>
+        <item>Closed</item>
+        <item>Abnormal</item>
+        <item>Unknown</item>
+    </string-array>
+</resources>
