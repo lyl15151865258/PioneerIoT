@@ -86,7 +86,7 @@
                     android:src="@drawable/garbage_can_selected" />
             </RelativeLayout>
 
-            <cn.njmeter.njmeter.widget.flowtaglayout.FlowTagLayout
+            <com.pioneeriot.pioneeriot.flowtaglayout.FlowTagLayout
                 android:id="@+id/ftl_history"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

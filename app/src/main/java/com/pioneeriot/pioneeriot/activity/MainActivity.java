@@ -18,6 +18,14 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+/**
+ * 主页面
+ * Created by LiYuliang on 2018/1/26 0026.
+ *
+ * @author LiYuliang
+ * @version 2018/1/26
+ */
+
 public class MainActivity extends BaseActivity {
 
     @BindViews({R.id.ll_a, R.id.ll_b, R.id.ll_c})
