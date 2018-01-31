@@ -104,6 +104,7 @@
     <string name="Abbreviation">Abbreviation</string>
     <string name="Interpretation">Interpretation</string>
     <string name="StatusCode">Status Code</string>
+    <string name="fail_find_version">Find version failed</string>
 
     <string-array name="spinner_content_filtering">
         <item>Meter SN</item>

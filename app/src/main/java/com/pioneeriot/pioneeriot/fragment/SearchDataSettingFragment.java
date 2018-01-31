@@ -289,6 +289,7 @@ public class SearchDataSettingFragment extends BaseFragment {
                     showRowsPerPageDialog();
                     break;
                 case R.id.btn_exit:
+                    SharedPreferencesUtils.getInstance().clearData("password");
                     mainActivity.openActivity(LoginActivity.class);
                     ActivityController.finishActivity(mainActivity);
                     break;

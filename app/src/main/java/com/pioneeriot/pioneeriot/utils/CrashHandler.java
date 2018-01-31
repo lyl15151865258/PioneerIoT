@@ -185,7 +185,7 @@ public class CrashHandler implements UncaughtExceptionHandler {
         try {
             // 将崩溃信息写入txt文件
             String model = android.os.Build.MODEL;
-            String fileName = "Crash-" + TimeUtils.getCurrentFormatDateTime() + "-" + model + ".txt";
+            String fileName = "PioneerIoT-" + TimeUtils.getCurrentFormatDateTime() + "-" + model + ".txt";
             String path = getRoot();
             File dir = new File(path);
             if (!dir.exists()) {

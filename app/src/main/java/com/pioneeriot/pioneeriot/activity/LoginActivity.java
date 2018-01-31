@@ -3,10 +3,13 @@ package com.pioneeriot.pioneeriot.activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.pioneeriot.pioneeriot.utils.ActivityController;
 import com.pioneeriot.pioneeriot.constant.Constant;
@@ -51,6 +54,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
         etUsername = findViewById(R.id.et_username);
         etPassword = findViewById(R.id.et_password);
+        etPassword.setOnEditorActionListener(onEditorActionListener);
         ivInvisible = findViewById(R.id.iv_invisible);
         String username = (String) SharedPreferencesUtils.getInstance().getData("username", "");
         String password = (String) SharedPreferencesUtils.getInstance().getData("password", "");
@@ -73,32 +77,42 @@ public class LoginActivity extends BaseActivity {
                 isInvisibleEtPassWord = !isInvisibleEtPassWord;
                 break;
             case R.id.btn_login:
-                String username = etUsername.getText().toString().trim();
-                String password = etPassword.getText().toString().trim();
-                if (TextUtils.isEmpty(username)) {
-                    showToast("请输入用户名");
-                }
-                if (TextUtils.isEmpty(password)) {
-                    showToast("请输入密码");
-                }
-                if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
-                    login(username, password);
-                }
+                login();
                 break;
             default:
                 break;
         }
     };
 
+    private TextView.OnEditorActionListener onEditorActionListener = (textView, actionId, keyEvent) -> {
+        boolean isGo = actionId == EditorInfo.IME_ACTION_GO || (keyEvent != null && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER);
+        if (isGo) {
+            login();
+        }
+        return false;
+    };
+
     /**
      * 登录
      */
-    private void login(String username, String password) {
-        Map<String, String> energyManagerParams = new HashMap<>(2);
-        energyManagerParams.put("loginName", username);
-        energyManagerParams.put("password", password);
-        Call<WaterMeterLoginResult> waterMeterLoginResultCall = NetClient.getInstances(NetClient.getBaseUrl(NetWork.SERVER_HOST_MAIN, NetWork.SERVER_PORT_MAIN, NetWork.PROJECT_MAIN)).getNjMeterApi().loginWaterMeter(energyManagerParams);
-        waterMeterLoginResultCall.enqueue(mCallbackWaterMeterLogin);
+    private void login() {
+        String username = etUsername.getText().toString().trim();
+        String password = etPassword.getText().toString().trim();
+        if (TextUtils.isEmpty(username)) {
+            showToast("Please enter your account");
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            showToast("Please enter the password");
+            return;
+        }
+        if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
+            Map<String, String> energyManagerParams = new HashMap<>(2);
+            energyManagerParams.put("loginName", username);
+            energyManagerParams.put("password", password);
+            Call<WaterMeterLoginResult> waterMeterLoginResultCall = NetClient.getInstances(NetClient.getBaseUrl(NetWork.SERVER_HOST_MAIN, NetWork.SERVER_PORT_MAIN, NetWork.PROJECT_MAIN)).getNjMeterApi().loginWaterMeter(energyManagerParams);
+            waterMeterLoginResultCall.enqueue(mCallbackWaterMeterLogin);
+        }
     }
 
     private Callback<WaterMeterLoginResult> mCallbackWaterMeterLogin = new Callback<WaterMeterLoginResult>() {
@@ -108,7 +122,7 @@ public class LoginActivity extends BaseActivity {
             if (response.isSuccessful()) {
                 WaterMeterLoginResult waterMeterLoginResult = response.body();
                 if (waterMeterLoginResult == null) {
-                    showToast("请求失败，返回值异常");
+                    showToast("Data Error");
                 } else {
                     String result = waterMeterLoginResult.getResult();
                     if (result.equals(Constant.SUCCESS)) {
@@ -158,21 +172,21 @@ public class LoginActivity extends BaseActivity {
                                 ActivityController.finishActivity(LoginActivity.this);
                                 break;
                             default:
-                                showToast("信息有误");
+                                showToast("Data Error");
                                 break;
                         }
                     } else {
-                        showToast("用户名或密码不正确");
+                        showToast("The account or password is incorrect");
                     }
                 }
             } else {
-                showToast("请求失败，返回值异常");
+                showToast("Data Error");
             }
         }
 
         @Override
         public void onFailure(@NotNull Call<WaterMeterLoginResult> call, @NotNull Throwable throwable) {
-            showToast("请求失败，" + throwable.getMessage());
+            showToast("Data Error，" + throwable.getMessage());
         }
     };
 }

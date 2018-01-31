@@ -72,7 +72,7 @@ public class LogoActivity extends BaseActivity {
             if (response.isSuccessful()) {
                 WaterMeterLoginResult waterMeterLoginResult = response.body();
                 if (waterMeterLoginResult == null) {
-                    showToast("请求失败，返回值异常");
+                    showToast("Data Error");
                 } else {
                     String result = waterMeterLoginResult.getResult();
                     if (result.equals(Constant.SUCCESS)) {
@@ -119,21 +119,21 @@ public class LogoActivity extends BaseActivity {
                                 ActivityController.finishActivity(LogoActivity.this);
                                 break;
                             default:
-                                showToast("信息有误");
+                                showToast("Data Error");
                                 break;
                         }
                     } else {
-                        showToast("用户名或密码不正确");
+                        showToast("The account or password is incorrect");
                     }
                 }
             } else {
-                showToast("请求失败，返回值异常");
+                showToast("Data Error");
             }
         }
 
         @Override
         public void onFailure(@NotNull Call<WaterMeterLoginResult> call, @NotNull Throwable throwable) {
-            showToast("请求失败，" + throwable.getMessage());
+            showToast("Data Error，" + throwable.getMessage());
         }
     };
 
