@@ -270,7 +270,7 @@ public class WaterMeterHistoryDataFragment extends BaseFragment {
      */
     private void changeDate(int mode, int value) {
         String date = tvDate.getText().toString().substring(0, 10);
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.CHINA);
         Calendar calendar = Calendar.getInstance();
         try {
             calendar.setTime(format.parse(date));
@@ -304,7 +304,7 @@ public class WaterMeterHistoryDataFragment extends BaseFragment {
         calendar1.setTime(currentDate);
         //利用compareTo比较两者，大于返回1，小于返回-1，等于返回0
         if (calendar.compareTo(calendar1) != 1) {
-            String newDate = DateFormat.format("yyyy-MM-dd", calendar).toString();
+            String newDate = DateFormat.format("dd/MM/yyyy", calendar).toString();
             tvDate.setText(String.format(getString(R.string.date), newDate));
         }
     }
@@ -346,7 +346,9 @@ public class WaterMeterHistoryDataFragment extends BaseFragment {
             beginTime = tvBeginTime.getText().toString();
             endTime = tvEndTime.getText().toString();
         }
-        showLoadingDialog(context, "数据查询中，请稍后", true);
+        beginTime = beginTime.split("/")[2] + "-" + beginTime.split("/")[1] + "-" + beginTime.split("/")[0];
+        endTime = endTime.split("/")[2] + "-" + endTime.split("/")[1] + "-" + endTime.split("/")[0];
+        showLoadingDialog(context, "Loading...", true);
         HashMap<String, String> params = new HashMap<>(5);
         params.put("fieldName", fieldName);
         params.put("fieldValue", fieldValue);
@@ -418,7 +420,7 @@ public class WaterMeterHistoryDataFragment extends BaseFragment {
         final Calendar calendar = Calendar.getInstance();
         DatePickerDialog dataPickerDialog = new DatePickerDialog(context, (view, year, monthOfYear, dayOfMonth) -> {
             calendar.set(year, monthOfYear, dayOfMonth);
-            String date = DateFormat.format("yyyy-MM-dd", calendar).toString();
+            String date = DateFormat.format("dd/MM/yyyy", calendar).toString();
             tv.setText(String.format(getString(R.string.date), date));
         }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
         DatePicker datePicker = dataPickerDialog.getDatePicker();

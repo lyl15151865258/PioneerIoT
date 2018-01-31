@@ -2,6 +2,7 @@ package com.pioneeriot.pioneeriot.adapter;
 
 import android.database.DataSetObserver;
 import android.support.v7.app.AppCompatActivity;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,11 @@ import android.widget.TextView;
 import com.pioneeriot.pioneeriot.R;
 import com.pioneeriot.pioneeriot.bean.WaterMeterLastCommitInformation;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * 水表最后一次抄表信息扩展列表的适配器
@@ -164,10 +169,26 @@ public class WaterMeterLastReportAdapter extends BaseExpandableListAdapter {
         childViewHolder.tvFlowRate.setText(String.format(appCompatActivity.getString(R.string.exampleFlowRate), String.valueOf(data.getFlowRate())));
         childViewHolder.tvPressure.setText(String.format(appCompatActivity.getString(R.string.example_pressure), String.valueOf(data.getPressure())));
         childViewHolder.tvValveStatus.setText(data.getValveStatus());
-        childViewHolder.tvMeterStatus.setText(data.getStatus());
-        childViewHolder.tvCreateTime.setText(data.getTimeInP());
-        childViewHolder.tvCommitTime.setText(data.getCreateTime());
-        String address = data.getVillage() + data.getBuilding() + data.getEntrance() + data.getDoorPlate();
+        childViewHolder.tvMeterStatus.setText(data.getStatus().replaceAll("\\D", ""));
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
+        Calendar calendar = Calendar.getInstance();
+        try {
+            calendar.setTime(format.parse(data.getTimeInP()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String newTimeInP = DateFormat.format("dd/MM/yyyy  HH:mm:ss", calendar).toString();
+        childViewHolder.tvCreateTime.setText(newTimeInP);
+
+        try {
+            calendar.setTime(format.parse(data.getCreateTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        calendar.add(Calendar.HOUR_OF_DAY, 3);
+        String newCreateTime = DateFormat.format("dd/MM/yyyy  HH:mm:ss", calendar).toString();
+        childViewHolder.tvCommitTime.setText(newCreateTime);
+        String address = data.getDoorPlate() + "," + data.getEntrance() + "," + data.getBuilding() + "," + data.getVillage();
         childViewHolder.tvAddress.setText(address);
         return convertView;
     }

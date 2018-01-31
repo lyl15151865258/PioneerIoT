@@ -1,6 +1,7 @@
 package com.pioneeriot.pioneeriot.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,11 @@ import android.widget.TextView;
 import com.pioneeriot.pioneeriot.R;
 import com.pioneeriot.pioneeriot.bean.WaterMeterCommitInformation;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by LiYuliang on 2018/1/10 0010.
@@ -46,14 +51,30 @@ public class WaterMeterHistoryDataCardAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         CardViewHolder holder = (CardViewHolder) viewHolder;
         WaterMeterCommitInformation.Data data = list.get(position);
-        holder.tvTimeReadMeter.setText(data.getTimeInP());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
+        Calendar calendar = Calendar.getInstance();
+        try {
+            calendar.setTime(format.parse(data.getTimeInP()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String newTimeInP = DateFormat.format("dd/MM/yyyy  HH:mm:ss", calendar).toString();
+
+        try {
+            calendar.setTime(format.parse(data.getCreateTime()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        calendar.add(Calendar.HOUR_OF_DAY, 3);
+        String newCreateTime = DateFormat.format("dd/MM/yyyy  HH:mm:ss", calendar).toString();
+        holder.tvTimeReadMeter.setText(newTimeInP);
+        holder.tvTimeCommit.setText(newCreateTime);
         holder.tvValveStatus.setText(data.getValveStatus());
         holder.tvWaterPressure.setText(String.valueOf(data.getPressure()));
         holder.tvFlowPositive.setText(String.valueOf(data.getTotal()));
         holder.tvFlowReverse.setText(String.valueOf(data.getElectric()));
         holder.tvFlowRate.setText(String.valueOf(data.getFlowRate()));
-        holder.tvMeterStatus.setText(data.getStatus());
-        holder.tvTimeCommit.setText(data.getCreateTime());
+        holder.tvMeterStatus.setText(data.getStatus().replaceAll("\\D", ""));
     }
 
     @Override

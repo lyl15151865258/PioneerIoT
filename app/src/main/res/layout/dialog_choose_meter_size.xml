@@ -20,7 +20,7 @@
             android:padding="@dimen/dp_10"
             android:paddingBottom="@dimen/dp_10"
             android:paddingTop="@dimen/dp_20"
-            android:text="水表口径查询设置"
+            android:text="Nominal diameter range settings"
             android:textSize="@dimen/sp_20"
             android:textStyle="bold" />
     </LinearLayout>
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_5"
-            android:text="口径范围："
+            android:text="DN Range："
             android:textSize="@dimen/sp_16" />
 
         <TextView
@@ -109,7 +109,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/background_button_dialog_selector_one"
-            android:text="确定"
+            android:text="@string/OK"
             android:textColor="@color/darkblue"
             android:textSize="@dimen/sp_18"
             android:textStyle="bold" />

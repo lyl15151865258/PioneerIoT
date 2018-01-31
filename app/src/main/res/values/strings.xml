@@ -21,6 +21,7 @@
     <string name="SearchSettings">Search Settings</string>
     <string name="SettingInstructions">Setting Instructions</string>
     <string name="UnitOfMeasurement">Units of Measurement</string>
+    <string name="MeterStatusCode">Meter Status Code</string>
     <string name="LatestDataQuerySettings">Latest Data Query Settings</string>
     <string name="HistoricalDataQuerySettings">Historical Data Query Settings</string>
     <string name="DN">DN</string>
@@ -56,6 +57,7 @@
     <string name="TotalFlow">Total Flow</string>
     <string name="FlowRate">Flow Rate</string>
     <string name="Pressure">Pressure</string>
+    <string name="Temperature">Temperature</string>
     <string name="MeterStatus">Status</string>
     <string name="ValveStatus">Valve</string>-
     <string name="ReverseFlow">Reverse Flow</string>
@@ -86,18 +88,22 @@
     <string name="Community">Community</string>
     <string name="Building">Building</string>
     <string name="Unit2">Unit</string>
-    <string name="date_example">2017年12月12日</string>
+    <string name="date_example">12/12/2017</string>
     <string name="to">~</string>
-    <string name="warning_delete_history">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;您将删除该条搜索记录，是否继续删除？</string>
+    <string name="warning_delete_history">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;You will delete the search record, do you want to continue?</string>
     <string name="range_meterSize_DN">%1$s~%2$s</string>
     <string name="date">%1$s</string>
     <string name="Put_MeterId_Chart">Put_MeterId_Chart</string>
-    <string name="timeRange_search_waterMeter">水表查询时间设置</string>
-    <string name="rowsPerPage_search_waterMeter">每页显示条数设置</string>
+    <string name="timeRange_search_waterMeter">Time Range Settings</string>
+    <string name="rowsPerPage_search_waterMeter">Items Per Page Settings</string>
     <string name="exampleConsumption">%1$sm³</string>
     <string name="exampleFlowRate">%1$sm³/h</string>
     <string name="example_pressure">%1$sbar</string>
     <string name="Logout">Log out</string>
+    <string name="AbbreviationIndex">Abbreviation Index</string>
+    <string name="Abbreviation">Abbreviation</string>
+    <string name="Interpretation">Interpretation</string>
+    <string name="StatusCode">Status Code</string>
 
     <string-array name="spinner_content_filtering">
         <item>Meter SN</item>

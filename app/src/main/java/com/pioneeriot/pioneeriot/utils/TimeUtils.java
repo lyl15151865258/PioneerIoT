@@ -98,7 +98,7 @@ public class TimeUtils {
      * @return 当前时间（年月日）
      */
     public static String getCurrentDate() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.CHINA);
         Date curDate = new Date(System.currentTimeMillis());
         return formatter.format(curDate);
     }

@@ -195,7 +195,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
         Map<String, String> params = new HashMap<>(2);
         params.put("fieldName", fieldName);
         params.put("fieldValue", String.valueOf(fieldValue));
-        showLoadingDialog(context, "正在查询水司层级", true);
+        showLoadingDialog(context, "Loading...", true);
         Call<WaterCompanyHierarchy> waterCompanyHierarchyCall = NetClient.getInstances(NetClient.getBaseUrl(NetWork.SERVER_HOST_MAIN, NetWork.SERVER_PORT_MAIN, NetWork.PROJECT_MAIN)).getNjMeterApi().searchAllHierarchy(params);
         waterCompanyHierarchyCall.enqueue(mCallback);
     }
@@ -208,28 +208,28 @@ public class ChooseHierarchyActivity extends BaseActivity {
             if (response.isSuccessful()) {
                 WaterCompanyHierarchy waterCompanyHierarchy = response.body();
                 if (waterCompanyHierarchy == null) {
-                    showToast("查询失败，返回值异常");
+                    showToast("Data Error");
                 } else {
                     if (Constant.SUCCESS.equals(waterCompanyHierarchy.getResult())) {
                         companyHierarchyList = waterCompanyHierarchy.getData();
                         if (companyHierarchyList.size() != 0) {
                             showHierarchyListView();
                         } else {
-                            showToast("没有查询到层级信息");
+                            showToast("No hierarchy");
                         }
                     } else {
-                        showToast("没有查询到层级信息");
+                        showToast("No hierarchy");
                     }
                 }
             } else {
-                showToast("查询失败，返回值异常");
+                showToast("Query failed");
             }
         }
 
         @Override
         public void onFailure(@NotNull Call<WaterCompanyHierarchy> call, @NotNull Throwable throwable) {
             cancelDialog();
-            showToast("查询失败，" + throwable.getMessage());
+            showToast("Query failed，" + throwable.getMessage());
         }
     };
 
@@ -277,7 +277,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                 Hierarchy hierarchy = new Hierarchy();
                 hierarchy.setId(companyHierarchyList.get(i).getExchangStationId());
                 hierarchy.setType(Hierarchy.EXCHANGE_STATION);
-                hierarchy.setText("（供水站）" + companyHierarchyList.get(i).getExchangStation());
+                hierarchy.setText("（Supply Station）" + companyHierarchyList.get(i).getExchangStation());
                 if (!hierarchyList.contains(hierarchy)) {
                     hierarchyList.add(hierarchy);
                 }
@@ -287,7 +287,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                 Hierarchy hierarchy = new Hierarchy();
                 hierarchy.setId(companyHierarchyList.get(i).getVillageId());
                 hierarchy.setType(Hierarchy.VILLAGE);
-                hierarchy.setText("（小区）" + companyHierarchyList.get(i).getVillage());
+                hierarchy.setText("（Community）" + companyHierarchyList.get(i).getVillage());
                 if (!hierarchyList.contains(hierarchy)) {
                     hierarchyList.add(hierarchy);
                 }
@@ -297,7 +297,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                 Hierarchy hierarchy = new Hierarchy();
                 hierarchy.setId(companyHierarchyList.get(i).getBuildingId());
                 hierarchy.setType(Hierarchy.BUILDING);
-                hierarchy.setText("（楼栋）" + companyHierarchyList.get(i).getBuilding());
+                hierarchy.setText("（Building）" + companyHierarchyList.get(i).getBuilding());
                 if (!hierarchyList.contains(hierarchy)) {
                     hierarchyList.add(hierarchy);
                 }
@@ -307,7 +307,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                 Hierarchy hierarchy = new Hierarchy();
                 hierarchy.setId(companyHierarchyList.get(i).getEntranceId());
                 hierarchy.setType(Hierarchy.ENTRANCE);
-                hierarchy.setText("（单元）" + companyHierarchyList.get(i).getEntrance());
+                hierarchy.setText("（Unit）" + companyHierarchyList.get(i).getEntrance());
                 if (!hierarchyList.contains(hierarchy)) {
                     hierarchyList.add(hierarchy);
                 }
@@ -367,7 +367,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                                         break;
                                     }
                                 }
-                                hierarchy = companyHierarchy.getExchangStation() + "—全部";
+                                hierarchy = companyHierarchy.getExchangStation() + "—All";
                                 name = "exchangStationId";
                                 break;
                             case Hierarchy.VILLAGE:
@@ -378,7 +378,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                                         break;
                                     }
                                 }
-                                hierarchy = companyHierarchy.getExchangStation() + "—" + companyHierarchy.getVillage() + "—全部";
+                                hierarchy = companyHierarchy.getExchangStation() + "—" + companyHierarchy.getVillage() + "—All";
                                 name = "villageId";
                                 break;
                             case Hierarchy.BUILDING:
@@ -389,7 +389,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                                         break;
                                     }
                                 }
-                                hierarchy = companyHierarchy.getExchangStation() + "—" + companyHierarchy.getVillage() + "—" + companyHierarchy.getBuilding() + "—全部";
+                                hierarchy = companyHierarchy.getExchangStation() + "—" + companyHierarchy.getVillage() + "—" + companyHierarchy.getBuilding() + "—All";
                                 name = "buildingId";
                                 break;
                             case Hierarchy.ENTRANCE:
@@ -404,12 +404,12 @@ public class ChooseHierarchyActivity extends BaseActivity {
                                 name = "entranceId";
                                 break;
                             default:
-                                hierarchy = "全部";
+                                hierarchy = "All";
                                 name = "";
                                 break;
                         }
                     } else {
-                        hierarchy = "全部";
+                        hierarchy = "All";
                         id = fieldValue;
                         name = fieldName;
                     }
@@ -425,7 +425,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                         etSearch.setText("");
                         showSuitedHierarchy(v);
                     } else {
-                        showToast("您无权修改该层级");
+                        showToast("You can not change the hierarchy");
                     }
                     break;
                 case R.id.tv_village:
@@ -433,7 +433,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                         etSearch.setText("");
                         showSuitedHierarchy(v);
                     } else {
-                        showToast("您无权修改该层级");
+                        showToast("You can not change the hierarchy");
                     }
                     break;
                 case R.id.tv_building:
@@ -441,7 +441,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                         etSearch.setText("");
                         showSuitedHierarchy(v);
                     } else {
-                        showToast("您无权修改该层级");
+                        showToast("You can not change the hierarchy");
                     }
                     break;
                 case R.id.tv_entrance:
@@ -449,7 +449,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                         etSearch.setText("");
                         showSuitedHierarchy(v);
                     } else {
-                        showToast("您无权修改该层级");
+                        showToast("You can not change the hierarchy");
                     }
                     break;
                 default:
@@ -472,7 +472,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                     Hierarchy hierarchy = new Hierarchy();
                     hierarchy.setId(companyHierarchy.getExchangStationId());
                     hierarchy.setType(Hierarchy.EXCHANGE_STATION);
-                    hierarchy.setText("（供水站）" + companyHierarchy.getExchangStation());
+                    hierarchy.setText("（Supply Station）" + companyHierarchy.getExchangStation());
                     if (!hierarchyList.contains(hierarchy)) {
                         hierarchyList.add(hierarchy);
                     }
@@ -484,7 +484,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                     Hierarchy hierarchy = new Hierarchy();
                     hierarchy.setId(companyHierarchy.getVillageId());
                     hierarchy.setType(Hierarchy.VILLAGE);
-                    hierarchy.setText("（小区）" + companyHierarchy.getVillage());
+                    hierarchy.setText("（Community）" + companyHierarchy.getVillage());
                     if (!hierarchyList.contains(hierarchy)) {
                         if (!allExchangeStation.equals(tvExchangeStation.getText().toString())) {
                             if (companyHierarchy.getExchangStation().equals(tvExchangeStation.getText().toString())) {
@@ -502,7 +502,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                     Hierarchy hierarchy = new Hierarchy();
                     hierarchy.setId(companyHierarchy.getBuildingId());
                     hierarchy.setType(Hierarchy.BUILDING);
-                    hierarchy.setText("（楼栋）" + companyHierarchy.getBuilding());
+                    hierarchy.setText("（Building）" + companyHierarchy.getBuilding());
                     if (!hierarchyList.contains(hierarchy)) {
                         if (!allVillage.equals(tvVillage.getText().toString())) {
                             if (companyHierarchy.getVillage().equals(tvVillage.getText().toString())) {
@@ -524,7 +524,7 @@ public class ChooseHierarchyActivity extends BaseActivity {
                     Hierarchy hierarchy = new Hierarchy();
                     hierarchy.setId(companyHierarchy.getEntranceId());
                     hierarchy.setType(Hierarchy.ENTRANCE);
-                    hierarchy.setText("（单元）" + companyHierarchy.getEntrance());
+                    hierarchy.setText("（Unit）" + companyHierarchy.getEntrance());
                     if (!hierarchyList.contains(hierarchy)) {
                         if (!allBuilding.equals(tvBuilding.getText().toString())) {
                             if (companyHierarchy.getBuilding().equals(tvBuilding.getText().toString())) {

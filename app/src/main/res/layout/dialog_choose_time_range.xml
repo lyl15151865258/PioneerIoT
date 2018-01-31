@@ -35,11 +35,10 @@
         android:padding="@dimen/dp_5">
 
         <TextView
-            android:id="@+id/tv_currentDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_5"
-            android:text="距今日"
+            android:text="Within "
             android:textSize="@dimen/sp_16" />
 
         <EditText
@@ -60,7 +59,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_5"
-            android:text="天内"
+            android:text="days"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/tv_currentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_5"
+            android:text="(31/01/2018) "
             android:textSize="@dimen/sp_16" />
     </LinearLayout>
 

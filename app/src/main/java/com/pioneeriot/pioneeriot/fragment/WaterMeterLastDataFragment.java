@@ -152,7 +152,7 @@ public class WaterMeterLastDataFragment extends BaseFragment {
                     etTimeRange.setText(charSequence);
                     //设置光标在末尾
                     etTimeRange.setSelection(charSequence.length());
-                    showToast("时间范围1~31");
+                    showToast("The time range is 1~31");
                 }
             }
 
@@ -306,7 +306,7 @@ public class WaterMeterLastDataFragment extends BaseFragment {
                     currentPage--;
                     searchWaterMeter(SEARCH_MODE_LAST);
                 } else {
-                    showToast("已经到第一页");
+                    showToast("Already to the first page");
                 }
                 break;
             case R.id.iv_nextPage:
@@ -315,7 +315,7 @@ public class WaterMeterLastDataFragment extends BaseFragment {
                     currentPage++;
                     searchWaterMeter(SEARCH_MODE_NEXT);
                 } else {
-                    showToast("已经到最后一页");
+                    showToast("Already to the last page");
                 }
                 break;
             default:
@@ -365,11 +365,11 @@ public class WaterMeterLastDataFragment extends BaseFragment {
             String minSize = etMeterSizeMinDialog.getText().toString();
             String maxSize = etMeterSizeMaxDialog.getText().toString();
             if (TextUtils.isEmpty(minSize)) {
-                showToast("请填写最小口径");
+                showToast("Please enter the minimum nominal diameter");
                 return;
             }
             if (TextUtils.isEmpty(maxSize)) {
-                showToast("请填写最大口径");
+                showToast("Please enter the maximum nominal diameter");
                 return;
             }
             //如果最小口径大于最大口径，则自动交换两者的值
@@ -526,7 +526,7 @@ public class WaterMeterLastDataFragment extends BaseFragment {
                     case 3:
                     case 4:
                         if (itemContentFiltering == -1 || itemComparisonOperators == -1 || TextUtils.isEmpty(etFilterValue.getText().toString().trim())) {
-                            showToast("请完善筛选条件");
+                            showToast("Please refine the filter criteria");
                             return;
                         }
                         filterCondition.setContentFiltering((String) contentFilteringAdapter.getItem(itemContentFiltering));
@@ -537,7 +537,7 @@ public class WaterMeterLastDataFragment extends BaseFragment {
                     case 5:
                     case 6:
                         if (itemContentFiltering == -1 || itemComparisonOperators == -1 || itemValueFiltering == -1) {
-                            showToast("请完善筛选条件");
+                            showToast("Please refine the filter criteria");
                             return;
                         }
                         filterCondition.setContentFiltering((String) contentFilteringAdapter.getItem(itemContentFiltering));
@@ -712,14 +712,14 @@ public class WaterMeterLastDataFragment extends BaseFragment {
                     etFilterValue.setText(s);
                     //设置光标在末尾
                     etFilterValue.setSelection(s.length());
-                    showToast("最多可以输入两位小数");
+                    showToast("You can enter up to two decimal places");
                 }
                 if (s.toString().indexOf(Constant.POINT) > 0 && Double.valueOf(s.toString().substring(0, s.toString().indexOf(Constant.POINT))) >= maxPressure) {
                     s = s.toString().subSequence(0, s.length() - 1);
                     etFilterValue.setText(s);
                     //设置光标在末尾
                     etFilterValue.setSelection(s.length());
-                    showToast("压力不能大于" + maxPressure + "bar");
+                    showToast("Pressure can not be greater than " + maxPressure + "bar");
                 }
             } else {
                 //如果没有小数点
@@ -728,7 +728,7 @@ public class WaterMeterLastDataFragment extends BaseFragment {
                     etFilterValue.setText(s);
                     //设置光标在末尾
                     etFilterValue.setSelection(s.length());
-                    showToast("压力不能大于" + maxPressure + "bar");
+                    showToast("Pressure can not be greater than " + maxPressure + "bar");
                 }
             }
             //如果直接输入小数点，前面自动补0
@@ -771,14 +771,14 @@ public class WaterMeterLastDataFragment extends BaseFragment {
                     etFilterValue.setText(s);
                     //设置光标在末尾
                     etFilterValue.setSelection(s.length());
-                    showToast("最多可以输入两位小数");
+                    showToast("You can enter up to two decimal places");
                 }
                 if (s.toString().indexOf(Constant.POINT) > 0 && Double.valueOf(s.toString().substring(0, s.toString().indexOf(Constant.POINT))) >= maxConsumption) {
                     s = s.toString().subSequence(0, s.length() - 1);
                     etFilterValue.setText(s);
                     //设置光标在末尾
                     etFilterValue.setSelection(s.length());
-                    showToast("累计流量不能大于" + maxConsumption + "m³");
+                    showToast("Total flow can not be greater than " + maxConsumption + "m³");
                 }
             } else {
                 //如果没有小数点
@@ -787,7 +787,7 @@ public class WaterMeterLastDataFragment extends BaseFragment {
                     etFilterValue.setText(s);
                     //设置光标在末尾
                     etFilterValue.setSelection(s.length());
-                    showToast("累计流量不能大于" + maxConsumption + "m³");
+                    showToast("Total flow can not be greater than " + maxConsumption + "m³");
                 }
             }
             //如果直接输入小数点，前面自动补0
@@ -830,14 +830,14 @@ public class WaterMeterLastDataFragment extends BaseFragment {
                     etFilterValue.setText(s);
                     //设置光标在末尾
                     etFilterValue.setSelection(s.length());
-                    showToast("最多可以输入两位小数");
+                    showToast("You can enter up to two decimal places");
                 }
                 if (s.toString().indexOf(Constant.POINT) > 0 && Double.valueOf(s.toString().substring(0, s.toString().indexOf(Constant.POINT))) >= maxFlowRate) {
                     s = s.toString().subSequence(0, s.length() - 1);
                     etFilterValue.setText(s);
                     //设置光标在末尾
                     etFilterValue.setSelection(s.length());
-                    showToast("瞬时流速不能大于" + maxFlowRate + "m³/h");
+                    showToast("Flow rate can not be greater than " + maxFlowRate + "m³/h");
                 }
             } else {
                 //如果没有小数点
@@ -846,7 +846,7 @@ public class WaterMeterLastDataFragment extends BaseFragment {
                     etFilterValue.setText(s);
                     //设置光标在末尾
                     etFilterValue.setSelection(s.length());
-                    showToast("瞬时流速不能大于100000m³/h");
+                    showToast("Flow rate can not be greater than " + maxFlowRate + "m³/h");
                 }
             }
             //如果直接输入小数点，前面自动补0
@@ -925,7 +925,7 @@ public class WaterMeterLastDataFragment extends BaseFragment {
      * @param fieldValue 层级ID
      */
     private void searchMeterLastInformation(String fieldName, String fieldValue, String timeRange, String pageNumber) {
-        showLoadingDialog(context, "数据请求中，请稍后", true);
+        showLoadingDialog(context, "Loading...", true);
         String meterSizeMin = (String) SharedPreferencesUtils.getInstance().getData("MeterSize_Min", Constant.EMPTY);
         String meterSizeMax = (String) SharedPreferencesUtils.getInstance().getData("MeterSize_Max", Constant.EMPTY);
         if (Constant.EMPTY.equals(meterSizeMin) || Constant.EMPTY.equals(meterSizeMax)) {
@@ -944,7 +944,7 @@ public class WaterMeterLastDataFragment extends BaseFragment {
 
         params.put("param", JSON.toJSONString(filterConditionList));
 
-        showLoadingDialog(context, "数据请求中，请稍后", true);
+        showLoadingDialog(context, "Loading...", true);
         if (scvSearchMode.getSelectedIndex() == 0) {
             //查询已抄到的水表
             Call<WaterMeterLastCommitInformation> waterMeterLastReportYiChaoCall = NetClient.getInstances(NetClient.getBaseUrl(NetWork.SERVER_HOST_MAIN, NetWork.SERVER_PORT_MAIN, NetWork.PROJECT_MAIN)).getNjMeterApi().searchMeterLastReportYiChao(params);
@@ -964,7 +964,7 @@ public class WaterMeterLastDataFragment extends BaseFragment {
             if (response.isSuccessful()) {
                 WaterMeterLastCommitInformation waterMeterLastCommitInformation = response.body();
                 if (waterMeterLastCommitInformation == null) {
-                    showToast("请求失败，返回值异常");
+                    showToast("Data Error");
                 } else {
                     if (waterMeterLastCommitInformation.getResult().equals(Constant.SUCCESS)) {
                         int totalCount = waterMeterLastCommitInformation.getCount();
@@ -977,7 +977,7 @@ public class WaterMeterLastDataFragment extends BaseFragment {
                         etCurrentPage.setText(String.valueOf(currentPage));
                         if (totalCount == 0) {
                             //如果列表长度为0弹出提示
-                            showToast("没有符合要求的表信息");
+                            showToast("No data");
                         } else {
                             //否则显示列表内容
                             waterMeterLastCommitInformationDataList = waterMeterLastCommitInformation.getData();
@@ -986,18 +986,18 @@ public class WaterMeterLastDataFragment extends BaseFragment {
                             changeListVisibility(true, false);
                         }
                     } else if (waterMeterLastCommitInformation.getResult().equals(Constant.FAIL)) {
-                        showToast("查询失败");
+                        showToast("Query failed");
                     }
                 }
             } else {
-                showToast("请求失败，返回值异常");
+                showToast("Query failed");
             }
         }
 
         @Override
         public void onFailure(@NotNull Call<WaterMeterLastCommitInformation> call, @NotNull Throwable throwable) {
             cancelDialog();
-            showToast("请求失败，" + throwable.getMessage());
+            showToast("Query failed，" + throwable.getMessage());
         }
     };
 

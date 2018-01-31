@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.pioneeriot.pioneeriot.activity.AbbreviationActivity;
+import com.pioneeriot.pioneeriot.activity.HtmlActivity;
+import com.pioneeriot.pioneeriot.activity.MeterStatusCodeActivity;
 import com.pioneeriot.pioneeriot.utils.ActivityController;
 import com.pioneeriot.pioneeriot.R;
 import com.pioneeriot.pioneeriot.widget.SegmentControlView;
@@ -61,6 +64,8 @@ public class SearchDataSettingFragment extends BaseFragment {
 
         (view.findViewById(R.id.ll_settingGuide)).setOnClickListener(onClickListener);
         (view.findViewById(R.id.ll_unit)).setOnClickListener(onClickListener);
+        (view.findViewById(R.id.ll_abbreviationIndex)).setOnClickListener(onClickListener);
+        (view.findViewById(R.id.ll_meterStatusCode)).setOnClickListener(onClickListener);
         (view.findViewById(R.id.btn_exit)).setOnClickListener(onClickListener);
         initPage();
 
@@ -80,7 +85,7 @@ public class SearchDataSettingFragment extends BaseFragment {
                 //发送广播通知查询页面刷新默认值
                 Intent intent = new Intent("RefreshDefaultData");
                 context.sendBroadcast(intent);
-                showToast("已修改查询口径为" + "DN" + tvSizeRange.getText());
+                showToast("Nominal Diameter Ranger:" + "DN" + tvSizeRange.getText());
             }
         });
 
@@ -100,7 +105,7 @@ public class SearchDataSettingFragment extends BaseFragment {
                 //发送广播通知查询页面刷新默认值
                 Intent intent = new Intent("RefreshDefaultData");
                 context.sendBroadcast(intent);
-                showToast("已修改查询时间为" + tvTimeRange.getText() + "天");
+                showToast("Time Range:" + tvTimeRange.getText() + " days");
             }
         });
 
@@ -120,7 +125,7 @@ public class SearchDataSettingFragment extends BaseFragment {
                 //发送广播通知查询页面刷新默认值
                 Intent intent = new Intent("RefreshDefaultData");
                 context.sendBroadcast(intent);
-                showToast("已修改每页显示条数为" + tvRows.getText() + "条");
+                showToast("Items Per Page:" + tvRows.getText() + " items");
             }
         });
         scvSearchMode.setOnSegmentChangedListener(onSegmentChangedListenerScvSearchMode);
@@ -185,9 +190,9 @@ public class SearchDataSettingFragment extends BaseFragment {
             Intent intent = new Intent("RefreshDefaultData");
             context.sendBroadcast(intent);
             if (searchTypeHasRead) {
-                showToast("已切换为查询已抄到的水表");
+                showToast("Query Mode:Read");
             } else {
-                showToast("已切换为查询未抄到的水表");
+                showToast("Query Mode:Unread");
             }
         }
     };
@@ -216,9 +221,9 @@ public class SearchDataSettingFragment extends BaseFragment {
             Intent intent = new Intent("RefreshDefaultData");
             context.sendBroadcast(intent);
             if (singleDate) {
-                showToast("已切换为单日期选择模式");
+                showToast("Date Selection Mode:Single Date");
             } else {
-                showToast("已切换为双日期选择模式");
+                showToast("Date Selection Mode:Double Date");
             }
         }
     };
@@ -247,9 +252,9 @@ public class SearchDataSettingFragment extends BaseFragment {
             Intent intent = new Intent("RefreshDefaultData");
             context.sendBroadcast(intent);
             if (showDataList) {
-                showToast("已切换为列表展示");
+                showToast("Data Display Mode:List");
             } else {
-                showToast("已切换为卡片展示");
+                showToast("Data Display Mode:Card");
             }
         }
     };
@@ -259,14 +264,20 @@ public class SearchDataSettingFragment extends BaseFragment {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.ll_settingGuide:
-//                    Intent intent = new Intent(context, HtmlActivity.class);
-//                    String url = "file:////android_asset/html/searchSettings/index.html";
-//                    intent.putExtra("title", getString(R.string.SettingInstructions));
-//                    intent.putExtra("URL", url);
-//                    startActivity(intent);
+                    Intent intent = new Intent(context, HtmlActivity.class);
+                    String url = "file:////android_asset/html/searchSettings/index.html";
+                    intent.putExtra("title", getString(R.string.SettingInstructions));
+                    intent.putExtra("URL", url);
+                    startActivity(intent);
                     break;
                 case R.id.ll_unit:
                     mainActivity.openActivity(UnitOfMeasurementActivity.class);
+                    break;
+                case R.id.ll_abbreviationIndex:
+                    mainActivity.openActivity(AbbreviationActivity.class);
+                    break;
+                case R.id.ll_meterStatusCode:
+                    mainActivity.openActivity(MeterStatusCodeActivity.class);
                     break;
                 case R.id.tv_sizeRange:
                     showSizeRangeDialog();
@@ -303,11 +314,11 @@ public class SearchDataSettingFragment extends BaseFragment {
             String minSize = etMeterSizeMinDialog.getText().toString();
             String maxSize = etMeterSizeMaxDialog.getText().toString();
             if (TextUtils.isEmpty(minSize)) {
-                showToast("请填写最小口径");
+                showToast("Please enter min Nominal diameter");
                 return;
             }
             if (TextUtils.isEmpty(maxSize)) {
-                showToast("请填写最大口径");
+                showToast("Please enter max Nominal diameter");
                 return;
             }
             //如果最小口径大于最大口径，则自动交换两者的值
@@ -335,7 +346,7 @@ public class SearchDataSettingFragment extends BaseFragment {
         chooseTimeRangeDialog.setCancelable(true);
         TextView tvCurrentDate = chooseTimeRangeDialog.findViewById(R.id.tv_currentDate);
         EditText etTimeRange = chooseTimeRangeDialog.findViewById(R.id.et_timeRange);
-        tvCurrentDate.setText("距今日（" + TimeUtils.getCurrentDate() + "）");
+        tvCurrentDate.setText("(" + TimeUtils.getCurrentDate() + ")");
         etTimeRange.setText((String) SharedPreferencesUtils.getInstance().getData("Search_Time_Range", SmartWaterSupply.DATA_SEARCH_TIME_RANGE));
         ViewUtils.setCharSequence(etTimeRange.getText());
         etTimeRange.addTextChangedListener(new TextWatcher() {
@@ -352,14 +363,14 @@ public class SearchDataSettingFragment extends BaseFragment {
                     etTimeRange.setText(charSequence);
                     //设置光标在末尾
                     etTimeRange.setSelection(charSequence.length());
-                    showToast("时间范围最大是" + SmartWaterSupply.DATA_SEARCH_TIME_RANGE_MAX + "天");
+                    showToast("The max time range is " + SmartWaterSupply.DATA_SEARCH_TIME_RANGE_MAX + " days");
                 }
                 if (!TextUtils.isEmpty(timeRange) && Integer.valueOf(timeRange) < SmartWaterSupply.DATA_SEARCH_TIME_RANGE_MIN) {
                     charSequence = charSequence.toString().subSequence(0, charSequence.length() - 1);
                     etTimeRange.setText(charSequence);
                     //设置光标在末尾
                     etTimeRange.setSelection(charSequence.length());
-                    showToast("时间范围最小是" + SmartWaterSupply.DATA_SEARCH_TIME_RANGE_MIN + "天");
+                    showToast("The min time range is " + SmartWaterSupply.DATA_SEARCH_TIME_RANGE_MIN + " days");
                 }
             }
 
@@ -371,10 +382,10 @@ public class SearchDataSettingFragment extends BaseFragment {
         chooseTimeRangeDialog.setOnDialogClickListener(() -> {
             String timeRange = etTimeRange.getText().toString().trim();
             if (TextUtils.isEmpty(timeRange)) {
-                showToast("请输入日期范围值");
+                showToast("Please enter time range");
                 return;
             } else if (Integer.valueOf(timeRange) < SmartWaterSupply.DATA_SEARCH_TIME_RANGE_MIN || Integer.valueOf(timeRange) > SmartWaterSupply.DATA_SEARCH_TIME_RANGE_MAX) {
-                showToast("日期范围值不合法");
+                showToast("The time range is not valid");
                 return;
             }
             SharedPreferencesUtils.getInstance().saveData("Search_Time_Range", timeRange);
@@ -409,7 +420,7 @@ public class SearchDataSettingFragment extends BaseFragment {
                     etRows.setText(charSequence);
                     //设置光标在末尾
                     etRows.setSelection(charSequence.length());
-                    showToast("每页最多显示条数为" + SmartWaterSupply.DATA_SEARCH_ROWS_PER_PAGE_MAX + "条");
+                    showToast("The max items in one page is " + SmartWaterSupply.DATA_SEARCH_ROWS_PER_PAGE_MAX);
                 }
             }
 
@@ -419,17 +430,17 @@ public class SearchDataSettingFragment extends BaseFragment {
             }
         });
         chooseRowsPerPageDialog.setOnDialogClickListener(() -> {
-            String timeRange = etRows.getText().toString().trim();
-            if (TextUtils.isEmpty(timeRange)) {
-                showToast("请输入每页显示的数据条数");
+            String rows = etRows.getText().toString().trim();
+            if (TextUtils.isEmpty(rows)) {
+                showToast("Please enter the number of items per page");
                 return;
-            } else if (Integer.valueOf(timeRange) < SmartWaterSupply.DATA_SEARCH_ROWS_PER_PAGE_MIN || Integer.valueOf(timeRange) > SmartWaterSupply.DATA_SEARCH_ROWS_PER_PAGE_MAX) {
-                showToast("每页展示的数据条数值不合法");
+            } else if (Integer.valueOf(rows) < SmartWaterSupply.DATA_SEARCH_ROWS_PER_PAGE_MIN || Integer.valueOf(rows) > SmartWaterSupply.DATA_SEARCH_ROWS_PER_PAGE_MAX) {
+                showToast("The number of items per page is " + SmartWaterSupply.DATA_SEARCH_ROWS_PER_PAGE_MIN + "~" + SmartWaterSupply.DATA_SEARCH_ROWS_PER_PAGE_MAX);
                 return;
             }
-            SharedPreferencesUtils.getInstance().saveData("Rows_Per_Page", timeRange);
-            if (!timeRange.equals(tvRows.getText().toString())) {
-                tvRows.setText(timeRange);
+            SharedPreferencesUtils.getInstance().saveData("Rows_Per_Page", rows);
+            if (!rows.equals(tvRows.getText().toString())) {
+                tvRows.setText(rows);
             }
             chooseRowsPerPageDialog.dismiss();
         });
