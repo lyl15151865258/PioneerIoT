@@ -213,7 +213,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/dp_5"
-            android:text="@string/ValveStatus"
+            android:text="@string/TEMP"
             android:textSize="@dimen/sp_14"
             android:textStyle="bold" />
 
@@ -223,7 +223,7 @@
             android:background="@color/gray_slight" />
 
         <TextView
-            android:id="@+id/tv_valveStatus"
+            android:id="@+id/tv_temperature"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.2"

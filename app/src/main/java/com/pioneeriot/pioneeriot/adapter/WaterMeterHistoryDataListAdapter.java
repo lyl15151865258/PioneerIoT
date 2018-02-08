@@ -1,5 +1,6 @@
 package com.pioneeriot.pioneeriot.adapter;
 
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
@@ -27,9 +28,11 @@ import java.util.Locale;
 public class WaterMeterHistoryDataListAdapter extends RecyclerView.Adapter {
 
     private List<WaterMeterCommitInformation.Data> list;
+    private AppCompatActivity appCompatActivity;
 
-    public WaterMeterHistoryDataListAdapter(List<WaterMeterCommitInformation.Data> lv) {
+    public WaterMeterHistoryDataListAdapter(AppCompatActivity appCompatActivity, List<WaterMeterCommitInformation.Data> lv) {
         list = lv;
+        this.appCompatActivity = appCompatActivity;
     }
 
     @Override
@@ -57,9 +60,9 @@ public class WaterMeterHistoryDataListAdapter extends RecyclerView.Adapter {
         calendar.add(Calendar.HOUR_OF_DAY, 3);
         String newCreateTime = DateFormat.format("dd/MM/yyyy  HH:mm:ss", calendar).toString();
         holder.tvTimeReadMeter.setText(newCreateTime);
-        holder.tvWaterPressure.setText(String.valueOf(data.getPressure()));
-        holder.tvFlowPositive.setText(String.valueOf(data.getTotal()));
-        holder.tvFlowRate.setText(String.valueOf(data.getFlowRate()));
+        holder.tvFlowPositive.setText(String.format(appCompatActivity.getString(R.string.exampleConsumption), String.valueOf(data.getTotal())));
+        holder.tvFlowRate.setText(String.format(appCompatActivity.getString(R.string.exampleFlowRate), String.valueOf(data.getFlowRate())));
+        holder.tvWaterPressure.setText(String.format(appCompatActivity.getString(R.string.example_pressure), String.valueOf(data.getPressure())));
     }
 
     @Override

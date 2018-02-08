@@ -168,7 +168,7 @@ public class WaterMeterLastReportAdapter extends BaseExpandableListAdapter {
         childViewHolder.tvConsumptionReserve.setText(String.format(appCompatActivity.getString(R.string.exampleConsumption), String.valueOf(data.getElectric())));
         childViewHolder.tvFlowRate.setText(String.format(appCompatActivity.getString(R.string.exampleFlowRate), String.valueOf(data.getFlowRate())));
         childViewHolder.tvPressure.setText(String.format(appCompatActivity.getString(R.string.example_pressure), String.valueOf(data.getPressure())));
-        childViewHolder.tvValveStatus.setText(data.getValveStatus());
+        childViewHolder.tvTemperature.setText(String.format(appCompatActivity.getString(R.string.example_temperature), String.valueOf(data.getT1Inp())));
         childViewHolder.tvMeterStatus.setText(data.getStatus().replaceAll("\\D", ""));
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
         Calendar calendar = Calendar.getInstance();
@@ -240,7 +240,7 @@ public class WaterMeterLastReportAdapter extends BaseExpandableListAdapter {
     }
 
     private class ChildViewHolder {
-        private TextView tvMeterId, tvMeterSize, tvConsumptionPositive, tvConsumptionReserve, tvFlowRate, tvPressure, tvValveStatus,
+        private TextView tvMeterId, tvMeterSize, tvConsumptionPositive, tvConsumptionReserve, tvFlowRate, tvPressure, tvTemperature,
                 tvMeterStatus, tvCreateTime, tvCommitTime, tvAddress;
 
         private ChildViewHolder(View view) {
@@ -250,7 +250,7 @@ public class WaterMeterLastReportAdapter extends BaseExpandableListAdapter {
             tvConsumptionReserve = view.findViewById(R.id.tv_consumption_reserve);
             tvFlowRate = view.findViewById(R.id.tv_flowRate);
             tvPressure = view.findViewById(R.id.tv_pressure);
-            tvValveStatus = view.findViewById(R.id.tv_valveStatus);
+            tvTemperature = view.findViewById(R.id.tv_temperature);
             tvMeterStatus = view.findViewById(R.id.tv_meterStatus);
             tvCreateTime = view.findViewById(R.id.tv_createTime);
             tvCommitTime = view.findViewById(R.id.tv_commitTime);

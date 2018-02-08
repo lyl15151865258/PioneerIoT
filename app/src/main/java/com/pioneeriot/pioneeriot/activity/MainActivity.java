@@ -78,7 +78,7 @@ public class MainActivity extends BaseActivity {
                         toolbar.setRightButtonImage(-1);
                         break;
                     case 2:
-                        toolbar.setTitle(getString(R.string.SearchSettings));
+                        toolbar.setTitle(getString(R.string.Settings));
                         toolbar.setRightButtonImage(-1);
                         break;
                     default:

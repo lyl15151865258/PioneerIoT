@@ -1,6 +1,5 @@
 package com.pioneeriot.pioneeriot.fragment;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.pioneeriot.pioneeriot.activity.MainActivity;
 import com.pioneeriot.pioneeriot.constant.Constant;
 import com.pioneeriot.pioneeriot.utils.LogUtils;
 import com.pioneeriot.pioneeriot.network.NetClient;
@@ -64,7 +65,7 @@ import retrofit2.Response;
 public class WaterMeterHistoryDataFragment extends BaseFragment {
 
     private Context context;
-    private Activity activity;
+    private AppCompatActivity appCompatActivity;
     private EditText etMeterId;
     private TextView tvDate, tvBeginTime, tvEndTime;
     private RecyclerView recyclerViewHistoryInformation;
@@ -82,7 +83,7 @@ public class WaterMeterHistoryDataFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_watermeter_history_data, container, false);
         context = getContext();
-        activity = getActivity();
+        appCompatActivity = (MainActivity) getActivity();
         etMeterId = view.findViewById(R.id.et_deviceId);
         etMeterId.addTextChangedListener(textWatcher);
         ImageView ivDeleteMeterId = view.findViewById(R.id.iv_deleteDeviceId);
@@ -94,8 +95,8 @@ public class WaterMeterHistoryDataFragment extends BaseFragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerViewHistoryInformation.setLayoutManager(linearLayoutManager);
-        waterMeterHistoryDataListAdapter = new WaterMeterHistoryDataListAdapter(dataList);
-        waterMeterHistoryDataCardAdapter = new WaterMeterHistoryDataCardAdapter(dataList);
+        waterMeterHistoryDataListAdapter = new WaterMeterHistoryDataListAdapter(appCompatActivity, dataList);
+        waterMeterHistoryDataCardAdapter = new WaterMeterHistoryDataCardAdapter(appCompatActivity, dataList);
 
         listDivider = new RecyclerViewDivider(context, LinearLayoutManager.HORIZONTAL, 1, ContextCompat.getColor(context, R.color.gray_slight));
         cardDivider = new RecyclerViewDivider(context, LinearLayoutManager.HORIZONTAL, 10, ContextCompat.getColor(context, R.color.white));
@@ -328,7 +329,7 @@ public class WaterMeterHistoryDataFragment extends BaseFragment {
     private void hideSoftInputFromWindow() {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {
-            imm.hideSoftInputFromWindow(activity.getWindow().getDecorView().getWindowToken(), 0);
+            imm.hideSoftInputFromWindow(appCompatActivity.getWindow().getDecorView().getWindowToken(), 0);
         }
     }
 

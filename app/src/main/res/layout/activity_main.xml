@@ -111,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_2"
-                android:text="@string/SearchSettings"
+                android:text="@string/Settings"
                 android:textColor="@drawable/color_radiobutton"
                 android:textSize="@dimen/sp_12" />
 

@@ -18,7 +18,7 @@
     <string name="RecentSearchRecord">Recent search records</string>
     <string name="LatestData">Latest Data</string>
     <string name="HistoricalData">Historical Data</string>
-    <string name="SearchSettings">Search Settings</string>
+    <string name="Settings">Settings</string>
     <string name="SettingInstructions">Setting Instructions</string>
     <string name="UnitOfMeasurement">Units of Measurement</string>
     <string name="MeterStatusCode">Meter Status Code</string>
@@ -58,8 +58,9 @@
     <string name="FlowRate">Flow Rate</string>
     <string name="Pressure">Pressure</string>
     <string name="Temperature">Temperature</string>
+    <string name="TEMP">TEMP</string>
     <string name="MeterStatus">Status</string>
-    <string name="ValveStatus">Valve</string>-
+    <string name="ValveStatus">Valve</string>
     <string name="ReverseFlow">Reverse Flow</string>
     <string name="Name">Name</string>
     <string name="Unit">Unit</string>
@@ -99,6 +100,7 @@
     <string name="exampleConsumption">%1$sm³</string>
     <string name="exampleFlowRate">%1$sm³/h</string>
     <string name="example_pressure">%1$sbar</string>
+    <string name="example_temperature">%1$s℃</string>
     <string name="Logout">Log out</string>
     <string name="AbbreviationIndex">Abbreviation Index</string>
     <string name="Abbreviation">Abbreviation</string>
