@@ -30,7 +30,7 @@
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_5"
                 android:text="@string/SettingInstructions"
-                android:textSize="@dimen/sp_18" />
+                android:textSize="@dimen/sp_16" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -64,7 +64,7 @@
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_5"
                 android:text="@string/UnitOfMeasurement"
-                android:textSize="@dimen/sp_18" />
+                android:textSize="@dimen/sp_16" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_5"
                 android:text="@string/AbbreviationIndex"
-                android:textSize="@dimen/sp_18" />
+                android:textSize="@dimen/sp_16" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -132,7 +132,7 @@
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp_5"
                 android:text="@string/MeterStatusCode"
-                android:textSize="@dimen/sp_18" />
+                android:textSize="@dimen/sp_16" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -162,7 +162,7 @@
                 android:background="@color/white"
                 android:padding="@dimen/dp_10"
                 android:text="@string/LatestDataQuerySettings"
-                android:textSize="@dimen/sp_18" />
+                android:textSize="@dimen/sp_16" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -182,7 +182,7 @@
                     android:drawableStart="@mipmap/icon_meter_size"
                     android:gravity="center_vertical"
                     android:text="@string/NominalDiameterRange"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -190,7 +190,7 @@
                     android:gravity="center"
                     android:padding="@dimen/dp_5"
                     android:text="DN"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:id="@+id/tv_sizeRange"
@@ -201,7 +201,7 @@
                     android:gravity="center"
                     android:padding="@dimen/dp_5"
                     android:text="1000~1000"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
             </LinearLayout>
 
@@ -229,7 +229,7 @@
                     android:drawableStart="@mipmap/icon_search_mode"
                     android:gravity="center_vertical"
                     android:text="@string/QueryMode"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <com.pioneeriot.pioneeriot.widget.SegmentControlView
                     android:id="@+id/scv_searchMode"
@@ -246,7 +246,7 @@
                     app:scv_SegmentPaddingVertical="@dimen/dp_5"
                     app:scv_SelectedIndex="0"
                     app:scv_TextArray="@array/segment_search_mode_arrays"
-                    app:scv_TextSize="@dimen/sp_16" />
+                    app:scv_TextSize="@dimen/sp_14" />
 
             </LinearLayout>
 
@@ -274,7 +274,7 @@
                     android:drawableStart="@mipmap/icon_time_range"
                     android:gravity="center_vertical"
                     android:text="@string/TimeRange"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:id="@+id/tv_timeRange"
@@ -285,7 +285,7 @@
                     android:gravity="center"
                     android:padding="@dimen/dp_5"
                     android:text="30"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -293,7 +293,7 @@
                     android:gravity="center"
                     android:padding="@dimen/dp_5"
                     android:text="@string/days"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
             </LinearLayout>
 
             <View
@@ -320,7 +320,7 @@
                     android:drawableStart="@mipmap/icon_items_page"
                     android:gravity="center_vertical"
                     android:text="@string/ItemsPerPage"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:id="@+id/tv_rows"
@@ -331,7 +331,7 @@
                     android:gravity="center"
                     android:padding="@dimen/dp_5"
                     android:text="1000"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -339,7 +339,7 @@
                     android:gravity="center"
                     android:padding="@dimen/dp_5"
                     android:text="@string/items"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
             </LinearLayout>
 
@@ -363,7 +363,7 @@
                 android:background="@color/white"
                 android:padding="@dimen/dp_10"
                 android:text="@string/HistoricalDataQuerySettings"
-                android:textSize="@dimen/sp_18" />
+                android:textSize="@dimen/sp_16" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -384,7 +384,7 @@
                     android:drawableStart="@mipmap/icon_time_select_mode"
                     android:gravity="center_vertical"
                     android:text="@string/TimeMode"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <com.pioneeriot.pioneeriot.widget.SegmentControlView
                     android:id="@+id/scv_timeMode"
@@ -401,7 +401,7 @@
                     app:scv_SegmentPaddingVertical="@dimen/dp_5"
                     app:scv_SelectedIndex="0"
                     app:scv_TextArray="@array/segment_time_mode_arrays"
-                    app:scv_TextSize="@dimen/sp_16" />
+                    app:scv_TextSize="@dimen/sp_14" />
 
             </LinearLayout>
 
@@ -429,7 +429,7 @@
                     android:drawableStart="@mipmap/icon_data_show_mode"
                     android:gravity="center_vertical"
                     android:text="@string/DataDisplayMode"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <com.pioneeriot.pioneeriot.widget.SegmentControlView
                     android:id="@+id/scv_showDataMode"
@@ -446,7 +446,7 @@
                     app:scv_SegmentPaddingVertical="@dimen/dp_5"
                     app:scv_SelectedIndex="0"
                     app:scv_TextArray="@array/segment_show_data_mode_arrays"
-                    app:scv_TextSize="@dimen/sp_16" />
+                    app:scv_TextSize="@dimen/sp_14" />
 
             </LinearLayout>
 
@@ -467,7 +467,7 @@
             android:text="@string/Logout"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp_18" />
+            android:textSize="@dimen/sp_16" />
 
     </LinearLayout>
 

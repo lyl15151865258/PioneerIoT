@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_5"
             android:text="@string/Hierarchy"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="@dimen/sp_14" />
 
         <TextView
             android:id="@+id/tv_current_hierarchy"
@@ -31,7 +31,7 @@
             android:maxLines="2"
             android:padding="@dimen/dp_5"
             android:text="@string/all"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="@dimen/sp_14" />
 
     </LinearLayout>
 
@@ -61,7 +61,7 @@
                 android:maxLines="1"
                 android:padding="@dimen/dp_5"
                 android:text="@string/mode"
-                android:textSize="@dimen/sp_16" />
+                android:textSize="@dimen/sp_14" />
 
             <com.pioneeriot.pioneeriot.widget.SegmentControlView
                 android:id="@+id/scv_searchMode"
@@ -76,7 +76,7 @@
                 app:scv_SegmentPaddingVertical="5dp"
                 app:scv_SelectedIndex="0"
                 app:scv_TextArray="@array/segment_search_mode_arrays"
-                app:scv_TextSize="@dimen/sp_16" />
+                app:scv_TextSize="@dimen/sp_14" />
 
         </LinearLayout>
 
@@ -93,7 +93,7 @@
             android:gravity="center"
             android:padding="@dimen/dp_5"
             android:text="@string/ShowAdvancedFilter"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="@dimen/sp_14" />
 
     </LinearLayout>
 
@@ -130,7 +130,7 @@
                     android:maxLines="1"
                     android:padding="@dimen/dp_5"
                     android:text="@string/TimeRange2"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <EditText
                     android:id="@+id/et_time_range"
@@ -147,7 +147,7 @@
                     android:maxLength="2"
                     android:maxLines="1"
                     android:padding="@dimen/dp_5"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -156,7 +156,7 @@
                     android:maxLines="1"
                     android:padding="@dimen/dp_5"
                     android:text="@string/days"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
             </LinearLayout>
 
@@ -179,7 +179,7 @@
                     android:maxLines="1"
                     android:padding="@dimen/dp_5"
                     android:text="@string/DN"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:id="@+id/tv_size_range"
@@ -192,7 +192,7 @@
                     android:maxLines="1"
                     android:padding="@dimen/dp_5"
                     android:text="100~1000"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
             </LinearLayout>
 
 
@@ -222,7 +222,7 @@
                     android:maxLines="1"
                     android:padding="@dimen/dp_5"
                     android:text="@string/OtherOptions"
-                    android:textSize="@dimen/sp_16" />
+                    android:textSize="@dimen/sp_14" />
 
             </LinearLayout>
 
@@ -249,7 +249,7 @@
                     android:marqueeRepeatLimit="marquee_forever"
                     android:padding="@dimen/dp_5"
                     android:singleLine="true"
-                    android:textSize="@dimen/sp_16"
+                    android:textSize="@dimen/sp_14"
                     android:visibility="gone" />
 
                 <ListView
@@ -278,7 +278,7 @@
                         android:text="@string/AddOptions"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/sp_16" />
+                        android:textSize="@dimen/sp_14" />
 
                     <Button
                         android:id="@+id/btn_deleteAllFilter"
@@ -294,7 +294,7 @@
                         android:text="@string/DeleteAll"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/sp_16" />
+                        android:textSize="@dimen/sp_14" />
 
                     <Button
                         android:id="@+id/btn_expandAllFilter"
@@ -310,7 +310,7 @@
                         android:text="@string/CollapseAll"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/sp_16" />
+                        android:textSize="@dimen/sp_14" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -338,7 +338,7 @@
             android:maxLines="1"
             android:padding="@dimen/dp_5"
             android:text="@string/items_pages"
-            android:textSize="@dimen/sp_16" />
+            android:textSize="@dimen/sp_14" />
 
         <View
             android:layout_width="@dimen/dp_1"
@@ -359,7 +359,7 @@
                 android:maxLines="1"
                 android:padding="@dimen/dp_5"
                 android:text="@string/Page"
-                android:textSize="@dimen/sp_16" />
+                android:textSize="@dimen/sp_14" />
 
             <ImageView
                 android:id="@+id/iv_lastPage"
@@ -380,7 +380,7 @@
                 android:inputType="number"
                 android:maxLines="1"
                 android:padding="@dimen/dp_5"
-                android:textSize="@dimen/sp_16" />
+                android:textSize="@dimen/sp_14" />
 
             <ImageView
                 android:id="@+id/iv_nextPage"

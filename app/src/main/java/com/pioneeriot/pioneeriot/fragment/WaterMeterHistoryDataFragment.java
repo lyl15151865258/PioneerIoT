@@ -368,29 +368,31 @@ public class WaterMeterHistoryDataFragment extends BaseFragment {
             if (response.isSuccessful()) {
                 WaterMeterCommitInformation waterMeterCommitInformation = response.body();
                 if (waterMeterCommitInformation == null) {
-                    showToast("查询失败，返回值异常");
+                    showToast("Data Error");
                 } else {
                     if (Constant.SUCCESS.equals(waterMeterCommitInformation.getResult())) {
                         //对象中拿到集合
                         dataList.clear();
                         dataList.addAll(waterMeterCommitInformation.getData());
-                        if (dataList != null && dataList.size() == 0) {
-                            showToast("暂无符合要求的数据");
+                        if (waterMeterCommitInformation.getTotalCount() == 0) {
+                            //如果列表长度为0弹出提示
+                            showToast("No data");
+                        } else {
+                            showListOrCard();
                         }
-                        showListOrCard();
                     } else {
-                        showToast("查询失败");
+                        showToast("Query failed");
                     }
                 }
             } else {
-                showToast("查询失败，返回值异常");
+                showToast("Data Error");
             }
         }
 
         @Override
         public void onFailure(@NotNull Call<WaterMeterCommitInformation> call, @NotNull Throwable throwable) {
             cancelDialog();
-            showToast("查询失败，" + throwable.getMessage());
+            showToast("Query failed，" + throwable.getMessage());
         }
     };
 
