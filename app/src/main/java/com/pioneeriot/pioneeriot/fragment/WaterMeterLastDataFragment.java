@@ -185,6 +185,8 @@ public class WaterMeterLastDataFragment extends BaseFragment {
         IntentFilter filter = new IntentFilter();
         filter.addAction("RefreshDefaultData");
         context.registerReceiver(refreshDefaultData, filter);
+
+        searchWaterMeter(SEARCH_MODE_NORMAL);
         return view;
     }
 

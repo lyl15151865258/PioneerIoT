@@ -86,7 +86,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/dp_5"
-            android:text="m³"
+            android:text="L"
             android:textSize="@dimen/sp_18" />
     </LinearLayout>
 
@@ -121,7 +121,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/dp_10"
-            android:text="m³"
+            android:text="L"
             android:textSize="@dimen/sp_18" />
     </LinearLayout>
 
@@ -157,7 +157,7 @@
             android:gravity="center"
             android:maxLines="1"
             android:padding="@dimen/dp_10"
-            android:text="m³/h"
+            android:text="L/h"
             android:textSize="@dimen/sp_18" />
 
     </LinearLayout>
@@ -197,7 +197,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="@dimen/dp_10"
-                android:text="kg/cm²"
+                android:text="kPa"
                 android:textSize="@dimen/sp_18" />
         </LinearLayout>
 

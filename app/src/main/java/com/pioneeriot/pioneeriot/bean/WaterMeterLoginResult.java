@@ -92,6 +92,12 @@ public class WaterMeterLoginResult {
 
         private String supplier;
 
+        private String login_id;
+
+        private String user_addr;
+
+        private String hie_id;
+
         public int getExchangStationId() {
             return exchangStationId;
         }
@@ -202,6 +208,30 @@ public class WaterMeterLoginResult {
 
         public void setSupplier(String supplier) {
             this.supplier = supplier;
+        }
+
+        public String getLogin_id() {
+            return login_id;
+        }
+
+        public void setLogin_id(String login_id) {
+            this.login_id = login_id;
+        }
+
+        public String getUser_addr() {
+            return user_addr;
+        }
+
+        public void setUser_addr(String user_addr) {
+            this.user_addr = user_addr;
+        }
+
+        public String getHie_id() {
+            return hie_id;
+        }
+
+        public void setHie_id(String hie_id) {
+            this.hie_id = hie_id;
         }
     }
 }

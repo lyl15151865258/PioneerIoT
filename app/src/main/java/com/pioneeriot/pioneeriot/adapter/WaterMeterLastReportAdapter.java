@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.pioneeriot.pioneeriot.R;
 import com.pioneeriot.pioneeriot.bean.WaterMeterLastCommitInformation;
+import com.pioneeriot.pioneeriot.utils.MathUtils;
+import com.pioneeriot.pioneeriot.utils.StringUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -147,7 +149,7 @@ public class WaterMeterLastReportAdapter extends BaseExpandableListAdapter {
         parentViewHolder.tvNumber.setText(String.valueOf(pageNumber * pageSize + groupPosition + 1));
         parentViewHolder.tvMeterId.setText(data.getMeterId());
         parentViewHolder.tvUserName.setText(data.getUserName());
-        parentViewHolder.tvConsumption.setText(String.valueOf(data.getTotal()));
+        parentViewHolder.tvConsumption.setText(StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getTotal() * 1000, 2))));
         return convertView;
     }
 
@@ -164,11 +166,11 @@ public class WaterMeterLastReportAdapter extends BaseExpandableListAdapter {
         WaterMeterLastCommitInformation.Data data = dataList.get(groupPosition);
         childViewHolder.tvMeterId.setText(data.getMeterId());
         childViewHolder.tvMeterSize.setText(data.getMeterSize());
-        childViewHolder.tvConsumptionPositive.setText(String.format(appCompatActivity.getString(R.string.exampleConsumption), String.valueOf(data.getTotal())));
-        childViewHolder.tvConsumptionReserve.setText(String.format(appCompatActivity.getString(R.string.exampleConsumption), String.valueOf(data.getElectric())));
-        childViewHolder.tvFlowRate.setText(String.format(appCompatActivity.getString(R.string.exampleFlowRate), String.valueOf(data.getFlowRate())));
-        childViewHolder.tvPressure.setText(String.format(appCompatActivity.getString(R.string.example_pressure), String.valueOf(data.getPressure())));
-        childViewHolder.tvTemperature.setText(String.format(appCompatActivity.getString(R.string.example_temperature), String.valueOf(data.getT1Inp())));
+        childViewHolder.tvConsumptionPositive.setText(String.format(appCompatActivity.getString(R.string.exampleConsumption), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getTotal() * 1000, 2)))));
+        childViewHolder.tvConsumptionReserve.setText(String.format(appCompatActivity.getString(R.string.exampleConsumption), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getElectric() * 1000, 2)))));
+        childViewHolder.tvFlowRate.setText(String.format(appCompatActivity.getString(R.string.exampleFlowRate), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getFlowRate() * 1000, 2)))));
+        childViewHolder.tvPressure.setText(String.format(appCompatActivity.getString(R.string.example_pressure), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getPressure() * 100, 2)))));
+        childViewHolder.tvTemperature.setText(String.format(appCompatActivity.getString(R.string.example_temperature), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getT1Inp(), 1)))));
         childViewHolder.tvMeterStatus.setText(data.getStatus().replaceAll("\\D", ""));
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
         Calendar calendar = Calendar.getInstance();
@@ -177,7 +179,7 @@ public class WaterMeterLastReportAdapter extends BaseExpandableListAdapter {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String newTimeInP = DateFormat.format("dd/MM/yyyy  HH:mm:ss", calendar).toString();
+        String newTimeInP = DateFormat.format("HH:mm:ss  dd/MM/yyyy", calendar).toString();
         childViewHolder.tvCreateTime.setText(newTimeInP);
 
         try {
@@ -185,8 +187,8 @@ public class WaterMeterLastReportAdapter extends BaseExpandableListAdapter {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        calendar.add(Calendar.HOUR_OF_DAY, 3);
-        String newCreateTime = DateFormat.format("dd/MM/yyyy  HH:mm:ss", calendar).toString();
+//        calendar.add(Calendar.HOUR_OF_DAY, 2);
+        String newCreateTime = DateFormat.format("HH:mm:ss  dd/MM/yyyy", calendar).toString();
         childViewHolder.tvCommitTime.setText(newCreateTime);
         String address = data.getDoorPlate() + "," + data.getEntrance() + "," + data.getBuilding() + "," + data.getVillage();
         childViewHolder.tvAddress.setText(address);

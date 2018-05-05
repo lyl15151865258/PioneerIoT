@@ -61,6 +61,7 @@ public class LogoActivity extends BaseActivity {
         Map<String, String> energyManagerParams = new HashMap<>(2);
         energyManagerParams.put("loginName", username);
         energyManagerParams.put("password", password);
+        energyManagerParams.put("type", "meter");
         Call<WaterMeterLoginResult> waterMeterLoginResultCall = NetClient.getInstances(NetClient.getBaseUrl(NetWork.SERVER_HOST_MAIN, NetWork.SERVER_PORT_MAIN, NetWork.PROJECT_MAIN)).getNjMeterApi().loginWaterMeter(energyManagerParams);
         waterMeterLoginResultCall.enqueue(mCallbackWaterMeterLogin);
     }
@@ -73,6 +74,8 @@ public class LogoActivity extends BaseActivity {
                 WaterMeterLoginResult waterMeterLoginResult = response.body();
                 if (waterMeterLoginResult == null) {
                     showToast("Data Error");
+                    openActivity(LoginActivity.class);
+                    ActivityController.finishActivity(LogoActivity.this);
                 } else {
                     String result = waterMeterLoginResult.getResult();
                     if (result.equals(Constant.SUCCESS)) {
@@ -124,16 +127,22 @@ public class LogoActivity extends BaseActivity {
                         }
                     } else {
                         showToast("The account or password is incorrect");
+                        openActivity(LoginActivity.class);
+                        ActivityController.finishActivity(LogoActivity.this);
                     }
                 }
             } else {
                 showToast("Data Error");
+                openActivity(LoginActivity.class);
+                ActivityController.finishActivity(LogoActivity.this);
             }
         }
 
         @Override
         public void onFailure(@NotNull Call<WaterMeterLoginResult> call, @NotNull Throwable throwable) {
             showToast("Data Error，" + throwable.getMessage());
+            openActivity(LoginActivity.class);
+            ActivityController.finishActivity(LogoActivity.this);
         }
     };
 

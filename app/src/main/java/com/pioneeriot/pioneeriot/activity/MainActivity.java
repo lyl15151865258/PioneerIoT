@@ -1,12 +1,18 @@
 package com.pioneeriot.pioneeriot.activity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.pioneeriot.pioneeriot.dialog.CommonWarningDialog;
+import com.pioneeriot.pioneeriot.utils.NotificationsUtils;
 import com.pioneeriot.pioneeriot.widget.MyToolbar;
 import com.pioneeriot.pioneeriot.widget.NoScrollViewPager;
 import com.pioneeriot.pioneeriot.R;
@@ -28,6 +34,8 @@ import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
+    private Context context;
+
     @BindViews({R.id.ll_a, R.id.ll_b, R.id.ll_c})
     LinearLayout[] menus;
 
@@ -35,14 +43,40 @@ public class MainActivity extends BaseActivity {
 
     private MyToolbar toolbar;
 
+    private final int REQUEST_CODE_NOTIFICATION_SETTINGS = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        context = this;
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         viewPager = findViewById(R.id.viewpager);
         viewPager.setNoScroll(false);
         initView();
+
+        if (!NotificationsUtils.isNotificationEnabled(context)) {
+            CommonWarningDialog commonWarningDialog = new CommonWarningDialog(context, getString(R.string.notification_open_notification));
+            commonWarningDialog.setCancelable(false);
+            commonWarningDialog.setOnDialogClickListener(new CommonWarningDialog.OnDialogClickListener() {
+                @Override
+                public void onOKClick() {
+                    // 根据isOpened结果，判断是否需要提醒用户跳转AppInfo页面，去打开App通知权限
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    Uri uri = Uri.fromParts("package", context.getPackageName(), null);
+                    intent.setData(uri);
+                    startActivityForResult(intent, REQUEST_CODE_NOTIFICATION_SETTINGS);
+                }
+
+                @Override
+                public void onCancelClick() {
+                    showToast("未授予通知权限，部分功能不可使用");
+                }
+            });
+            commonWarningDialog.show();
+        }
     }
 
     /**
@@ -156,4 +190,5 @@ public class MainActivity extends BaseActivity {
         //参数false代表瞬间切换，true表示平滑过渡
         viewPager.setCurrentItem((Integer) linearLayout.getTag(), false);
     }
+
 }

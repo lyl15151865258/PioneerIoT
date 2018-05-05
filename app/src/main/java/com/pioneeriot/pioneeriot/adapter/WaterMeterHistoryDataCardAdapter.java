@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.pioneeriot.pioneeriot.R;
 import com.pioneeriot.pioneeriot.bean.WaterMeterCommitInformation;
+import com.pioneeriot.pioneeriot.utils.MathUtils;
+import com.pioneeriot.pioneeriot.utils.StringUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -61,22 +63,22 @@ public class WaterMeterHistoryDataCardAdapter extends RecyclerView.Adapter {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String newTimeInP = DateFormat.format("dd/MM/yyyy  HH:mm:ss", calendar).toString();
+        String newTimeInP = DateFormat.format("HH:mm:ss  dd/MM/yyyy", calendar).toString();
 
         try {
             calendar.setTime(format.parse(data.getCreateTime()));
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        calendar.add(Calendar.HOUR_OF_DAY, 3);
-        String newCreateTime = DateFormat.format("dd/MM/yyyy  HH:mm:ss", calendar).toString();
+//        calendar.add(Calendar.HOUR_OF_DAY, 2);
+        String newCreateTime = DateFormat.format("HH:mm:ss  dd/MM/yyyy", calendar).toString();
         holder.tvTimeReadMeter.setText(newTimeInP);
         holder.tvTimeCommit.setText(newCreateTime);
-        holder.tvFlowPositive.setText(String.format(appCompatActivity.getString(R.string.exampleConsumption), String.valueOf(data.getTotal())));
-        holder.tvFlowReverse.setText(String.format(appCompatActivity.getString(R.string.exampleConsumption), String.valueOf(data.getElectric())));
-        holder.tvFlowRate.setText(String.format(appCompatActivity.getString(R.string.exampleFlowRate), String.valueOf(data.getFlowRate())));
-        holder.tvWaterPressure.setText(String.format(appCompatActivity.getString(R.string.example_pressure), String.valueOf(data.getPressure())));
-        holder.tvTemperature.setText(String.format(appCompatActivity.getString(R.string.example_temperature), String.valueOf(data.getT1Inp())));
+        holder.tvFlowPositive.setText(String.format(appCompatActivity.getString(R.string.exampleConsumption), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getTotal() * 1000, 2)))));
+        holder.tvFlowReverse.setText(String.format(appCompatActivity.getString(R.string.exampleConsumption), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getElectric() * 1000, 2)))));
+        holder.tvFlowRate.setText(String.format(appCompatActivity.getString(R.string.exampleFlowRate), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getFlowRate() * 1000, 2)))));
+        holder.tvWaterPressure.setText(String.format(appCompatActivity.getString(R.string.example_pressure), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getPressure() * 100, 2)))));
+        holder.tvTemperature.setText(String.format(appCompatActivity.getString(R.string.example_temperature), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getT1Inp(), 1)))));
         holder.tvMeterStatus.setText(data.getStatus().replaceAll("\\D", ""));
     }
 

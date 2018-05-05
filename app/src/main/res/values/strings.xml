@@ -97,16 +97,16 @@
     <string name="Put_MeterId_Chart">Put_MeterId_Chart</string>
     <string name="timeRange_search_waterMeter">Time Range Settings</string>
     <string name="rowsPerPage_search_waterMeter">Items Per Page Settings</string>
-    <string name="exampleConsumption">%1$sm³</string>
-    <string name="exampleFlowRate">%1$sm³/h</string>
-    <string name="example_pressure">%1$sbar</string>
+    <string name="exampleConsumption">%1$sL</string>
+    <string name="exampleFlowRate">%1$sL/h</string>
+    <string name="example_pressure">%1$skPa</string>
     <string name="example_temperature">%1$s℃</string>
     <string name="Logout">Log out</string>
     <string name="AbbreviationIndex">Abbreviation Index</string>
     <string name="Abbreviation">Abbreviation</string>
     <string name="Interpretation">Interpretation</string>
     <string name="StatusCode">Status Code</string>
-    <string name="fail_find_version">Find version failed</string>
+    <string name="fail_find_version">Find version failed</string><string name="notification_open_notification">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Because of system limitations, you need to manually turn on the notification permission, otherwise it will affect the use of the software. Do you want to open the settings page?</string>
 
     <string-array name="spinner_content_filtering">
         <item>Meter SN</item>

@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.pioneeriot.pioneeriot.R;
 import com.pioneeriot.pioneeriot.bean.WaterMeterCommitInformation;
+import com.pioneeriot.pioneeriot.utils.MathUtils;
+import com.pioneeriot.pioneeriot.utils.StringUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -57,12 +59,12 @@ public class WaterMeterHistoryDataListAdapter extends RecyclerView.Adapter {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        calendar.add(Calendar.HOUR_OF_DAY, 3);
-        String newCreateTime = DateFormat.format("dd/MM/yyyy  HH:mm:ss", calendar).toString();
+//        calendar.add(Calendar.HOUR_OF_DAY, 2);
+        String newCreateTime = DateFormat.format("HH:mm:ss  dd/MM/yyyy", calendar).toString();
         holder.tvTimeReadMeter.setText(newCreateTime);
-        holder.tvFlowPositive.setText(String.format(appCompatActivity.getString(R.string.exampleConsumption), String.valueOf(data.getTotal())));
-        holder.tvFlowRate.setText(String.format(appCompatActivity.getString(R.string.exampleFlowRate), String.valueOf(data.getFlowRate())));
-        holder.tvWaterPressure.setText(String.format(appCompatActivity.getString(R.string.example_pressure), String.valueOf(data.getPressure())));
+        holder.tvFlowPositive.setText(String.format(appCompatActivity.getString(R.string.exampleConsumption), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getTotal() * 1000, 2)))));
+        holder.tvFlowRate.setText(String.format(appCompatActivity.getString(R.string.exampleFlowRate), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getFlowRate() * 1000, 2)))));
+        holder.tvWaterPressure.setText(String.format(appCompatActivity.getString(R.string.example_pressure), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getPressure() * 100, 2)))));
     }
 
     @Override
