@@ -29,7 +29,6 @@ import com.pioneeriot.pioneeriot.adapter.FilterConditionAdapter;
 import com.pioneeriot.pioneeriot.utils.LogUtils;
 import com.pioneeriot.pioneeriot.widget.MarqueeTextView;
 import com.pioneeriot.pioneeriot.network.NetClient;
-import com.pioneeriot.pioneeriot.network.NetWork;
 import com.pioneeriot.pioneeriot.R;
 import com.pioneeriot.pioneeriot.widget.SegmentControlView;
 import com.pioneeriot.pioneeriot.utils.SharedPreferencesUtils;
@@ -947,13 +946,16 @@ public class WaterMeterLastDataFragment extends BaseFragment {
         params.put("param", JSON.toJSONString(filterConditionList));
 
         showLoadingDialog(context, "Loading...", true);
+        String ip = (String) SharedPreferencesUtils.getInstance().getData("ip", "");
+        String httpPort = (String) SharedPreferencesUtils.getInstance().getData("httpPort", "");
+        String serviceName = (String) SharedPreferencesUtils.getInstance().getData("serviceName", "");
         if (scvSearchMode.getSelectedIndex() == 0) {
             //查询已抄到的水表
-            Call<WaterMeterLastCommitInformation> waterMeterLastReportYiChaoCall = NetClient.getInstances(NetClient.getBaseUrl(NetWork.SERVER_HOST_MAIN, NetWork.SERVER_PORT_MAIN, NetWork.PROJECT_MAIN)).getNjMeterApi().searchMeterLastReportYiChao(params);
+            Call<WaterMeterLastCommitInformation> waterMeterLastReportYiChaoCall = NetClient.getInstances(NetClient.getBaseUrl(ip, httpPort, serviceName)).getNjMeterApi().searchMeterLastReportYiChao(params);
             waterMeterLastReportYiChaoCall.enqueue(mCallbackWaterMeterLast);
         } else if (scvSearchMode.getSelectedIndex() == 1) {
             //查询未抄到的水表
-            Call<WaterMeterLastCommitInformation> waterMeterLastReportWeiChaoCall = NetClient.getInstances(NetClient.getBaseUrl(NetWork.SERVER_HOST_MAIN, NetWork.SERVER_PORT_MAIN, NetWork.PROJECT_MAIN)).getNjMeterApi().searchMeterLastReportWeiChao(params);
+            Call<WaterMeterLastCommitInformation> waterMeterLastReportWeiChaoCall = NetClient.getInstances(NetClient.getBaseUrl(ip, httpPort, serviceName)).getNjMeterApi().searchMeterLastReportWeiChao(params);
             waterMeterLastReportWeiChaoCall.enqueue(mCallbackWaterMeterLast);
         }
     }

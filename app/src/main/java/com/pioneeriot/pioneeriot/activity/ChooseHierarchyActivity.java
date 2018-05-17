@@ -196,7 +196,10 @@ public class ChooseHierarchyActivity extends BaseActivity {
         params.put("fieldName", fieldName);
         params.put("fieldValue", String.valueOf(fieldValue));
         showLoadingDialog(context, "Loading...", true);
-        Call<WaterCompanyHierarchy> waterCompanyHierarchyCall = NetClient.getInstances(NetClient.getBaseUrl(NetWork.SERVER_HOST_MAIN, NetWork.SERVER_PORT_MAIN, NetWork.PROJECT_MAIN)).getNjMeterApi().searchAllHierarchy(params);
+        String ip = (String) SharedPreferencesUtils.getInstance().getData("ip", "");
+        String httpPort = (String) SharedPreferencesUtils.getInstance().getData("httpPort", "");
+        String serviceName = (String) SharedPreferencesUtils.getInstance().getData("serviceName", "");
+        Call<WaterCompanyHierarchy> waterCompanyHierarchyCall = NetClient.getInstances(NetClient.getBaseUrl(ip, httpPort, serviceName)).getNjMeterApi().searchAllHierarchy(params);
         waterCompanyHierarchyCall.enqueue(mCallback);
     }
 

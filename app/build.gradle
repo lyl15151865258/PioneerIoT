@@ -10,8 +10,8 @@ android {
         applicationId "com.pioneeriot.pioneeriot"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 20180426
-        versionName "1.0.4"
+        versionCode 20180517
+        versionName "1.0.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {

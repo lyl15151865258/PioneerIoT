@@ -78,7 +78,7 @@ public class WaterMeterHistoryDataCardAdapter extends RecyclerView.Adapter {
         holder.tvFlowReverse.setText(String.format(appCompatActivity.getString(R.string.exampleConsumption), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getElectric() * 1000, 2)))));
         holder.tvFlowRate.setText(String.format(appCompatActivity.getString(R.string.exampleFlowRate), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getFlowRate() * 1000, 2)))));
         holder.tvWaterPressure.setText(String.format(appCompatActivity.getString(R.string.example_pressure), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getPressure() * 100, 2)))));
-        holder.tvTemperature.setText(String.format(appCompatActivity.getString(R.string.example_temperature), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getT1Inp(), 1)))));
+        holder.tvTemperature.setText(String.format(appCompatActivity.getString(R.string.example_temperature), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getT1Inp(), 0)))));
         holder.tvMeterStatus.setText(data.getStatus().replaceAll("\\D", ""));
     }
 

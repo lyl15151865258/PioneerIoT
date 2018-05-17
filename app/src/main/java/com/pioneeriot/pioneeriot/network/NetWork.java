@@ -9,24 +9,21 @@ package com.pioneeriot.pioneeriot.network;
  */
 
 public class NetWork {
+//    public static final String SERVER_HOST_MAIN = "59.167.239.62";
+//    public static final String SERVER_PORT_MAIN = "9999";
+//    public static final String PROJECT_MAIN = "mtmeter";
     /**
      * 主账号IP地址
      */
-    public static final String SERVER_HOST_MAIN = "59.167.239.62";
+    public static String SERVER_HOST_MAIN = "www.metter.cn";
     /**
      * 主账号端口号
      */
-    public static final String SERVER_PORT_MAIN = "9999";
+    public static String SERVER_PORT_MAIN = "8072";
     /**
      * 主账号项目名
      */
-    public static final String PROJECT_MAIN = "mtmeter";
-    /**
-     * 测试用地址
-     */
-//    public static final String SERVER_HOST_MAIN = "192.168.1.166";
-//    public static final String SERVER_PORT_MAIN = "5068";
-//    public static final String PROJECT_MAIN = "8074en";
+    public static String PROJECT_MAIN = "AndroidManager";
     /**
      * http请求超时时间
      */

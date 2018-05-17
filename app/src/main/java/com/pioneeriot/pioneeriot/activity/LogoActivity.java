@@ -9,7 +9,6 @@ import com.pioneeriot.pioneeriot.utils.ActivityController;
 import com.pioneeriot.pioneeriot.constant.Constant;
 import com.pioneeriot.pioneeriot.utils.LogUtils;
 import com.pioneeriot.pioneeriot.network.NetClient;
-import com.pioneeriot.pioneeriot.network.NetWork;
 import com.pioneeriot.pioneeriot.R;
 import com.pioneeriot.pioneeriot.utils.SharedPreferencesUtils;
 import com.pioneeriot.pioneeriot.bean.WaterMeterLoginResult;
@@ -39,15 +38,18 @@ public class LogoActivity extends BaseActivity {
         //去除状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_logo);
-        String username = (String) SharedPreferencesUtils.getInstance().getData("username", "");
-        String password = (String) SharedPreferencesUtils.getInstance().getData("password", "");
+        String ip = (String) SharedPreferencesUtils.getInstance().getData("ip", "");
+        String httpPort = (String) SharedPreferencesUtils.getInstance().getData("httpPort", "");
+        String serviceName = (String) SharedPreferencesUtils.getInstance().getData("serviceName", "");
+        String username = (String) SharedPreferencesUtils.getInstance().getData("userName", "");
+        String password = (String) SharedPreferencesUtils.getInstance().getData("passWord", "");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
-            login(username, password);
+            login(ip, httpPort, serviceName, username, password);
         } else {
             openActivity(LoginActivity.class);
             ActivityController.finishActivity(this);
@@ -57,12 +59,12 @@ public class LogoActivity extends BaseActivity {
     /**
      * 登录
      */
-    private void login(String username, String password) {
-        Map<String, String> energyManagerParams = new HashMap<>(2);
+    private void login(String ip, String httpPort, String serviceName, String username, String password) {
+        Map<String, String> energyManagerParams = new HashMap<>(3);
         energyManagerParams.put("loginName", username);
         energyManagerParams.put("password", password);
         energyManagerParams.put("type", "meter");
-        Call<WaterMeterLoginResult> waterMeterLoginResultCall = NetClient.getInstances(NetClient.getBaseUrl(NetWork.SERVER_HOST_MAIN, NetWork.SERVER_PORT_MAIN, NetWork.PROJECT_MAIN)).getNjMeterApi().loginWaterMeter(energyManagerParams);
+        Call<WaterMeterLoginResult> waterMeterLoginResultCall = NetClient.getInstances(NetClient.getBaseUrl(ip, httpPort, serviceName)).getNjMeterApi().loginWaterMeter(energyManagerParams);
         waterMeterLoginResultCall.enqueue(mCallbackWaterMeterLogin);
     }
 

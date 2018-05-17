@@ -2,6 +2,9 @@
     <string name="app_name">Pioneer IoT</string>
     <string name="dialog_loading">loading……</string>
     <string name="click_again_exit">Click again to exit</string>
+    <string name="InputServerHost">Domain name or IP address</string>
+    <string name="InputHttpPort">HTTP port number</string>
+    <string name="InputServiceName">Service Name</string>
     <string name="InputUsername">Username</string>
     <string name="InputPassword2">Password</string>
     <string name="Login">Login</string>

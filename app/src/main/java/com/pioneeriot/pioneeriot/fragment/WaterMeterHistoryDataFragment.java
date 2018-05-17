@@ -356,7 +356,10 @@ public class WaterMeterHistoryDataFragment extends BaseFragment {
         params.put("meterId", meterId);
         params.put("beginTime", beginTime);
         params.put("endTime", endTime);
-        Call<WaterMeterCommitInformation> waterMeterCommitInformationCall = NetClient.getInstances(NetClient.getBaseUrl(NetWork.SERVER_HOST_MAIN, NetWork.SERVER_PORT_MAIN, NetWork.PROJECT_MAIN)).getNjMeterApi().searchMeterCommitDataInformation(params);
+        String ip = (String) SharedPreferencesUtils.getInstance().getData("ip", "");
+        String httpPort = (String) SharedPreferencesUtils.getInstance().getData("httpPort", "");
+        String serviceName = (String) SharedPreferencesUtils.getInstance().getData("serviceName", "");
+        Call<WaterMeterCommitInformation> waterMeterCommitInformationCall = NetClient.getInstances(NetClient.getBaseUrl(ip, httpPort, serviceName)).getNjMeterApi().searchMeterCommitDataInformation(params);
         waterMeterCommitInformationCall.enqueue(mCallbackWaterCommitInformation);
     }
 

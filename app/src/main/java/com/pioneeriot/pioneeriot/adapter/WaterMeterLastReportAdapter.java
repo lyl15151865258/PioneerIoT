@@ -170,7 +170,7 @@ public class WaterMeterLastReportAdapter extends BaseExpandableListAdapter {
         childViewHolder.tvConsumptionReserve.setText(String.format(appCompatActivity.getString(R.string.exampleConsumption), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getElectric() * 1000, 2)))));
         childViewHolder.tvFlowRate.setText(String.format(appCompatActivity.getString(R.string.exampleFlowRate), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getFlowRate() * 1000, 2)))));
         childViewHolder.tvPressure.setText(String.format(appCompatActivity.getString(R.string.example_pressure), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getPressure() * 100, 2)))));
-        childViewHolder.tvTemperature.setText(String.format(appCompatActivity.getString(R.string.example_temperature), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getT1Inp(), 1)))));
+        childViewHolder.tvTemperature.setText(String.format(appCompatActivity.getString(R.string.example_temperature), StringUtils.removeZero(String.valueOf(MathUtils.formatDouble(data.getT1Inp(), 0)))));
         childViewHolder.tvMeterStatus.setText(data.getStatus().replaceAll("\\D", ""));
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA);
         Calendar calendar = Calendar.getInstance();

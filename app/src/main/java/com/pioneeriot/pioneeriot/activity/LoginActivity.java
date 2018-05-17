@@ -11,11 +11,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.pioneeriot.pioneeriot.network.NetWork;
 import com.pioneeriot.pioneeriot.utils.ActivityController;
 import com.pioneeriot.pioneeriot.constant.Constant;
 import com.pioneeriot.pioneeriot.utils.LogUtils;
 import com.pioneeriot.pioneeriot.network.NetClient;
-import com.pioneeriot.pioneeriot.network.NetWork;
 import com.pioneeriot.pioneeriot.R;
 import com.pioneeriot.pioneeriot.utils.SharedPreferencesUtils;
 import com.pioneeriot.pioneeriot.utils.ViewUtils;
@@ -40,8 +40,8 @@ import retrofit2.Response;
 
 public class LoginActivity extends BaseActivity {
 
-    private EditText etUsername, etPassword;
-    private ImageView  ivInvisible;
+    private EditText etIp, etHttpPort, etServiceName, etUsername, etPassword;
+    private ImageView ivInvisible;
     private boolean isInvisibleEtPassWord = true;
 
     @Override
@@ -52,16 +52,31 @@ public class LoginActivity extends BaseActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
         setContentView(R.layout.activity_login);
+        etIp = findViewById(R.id.et_ip);
+        etHttpPort = findViewById(R.id.et_httpPort);
+        etServiceName = findViewById(R.id.et_serviceName);
         etUsername = findViewById(R.id.et_username);
         etPassword = findViewById(R.id.et_password);
         etPassword.setOnEditorActionListener(onEditorActionListener);
         ivInvisible = findViewById(R.id.iv_invisible);
-        String username = (String) SharedPreferencesUtils.getInstance().getData("username", "");
-        String password = (String) SharedPreferencesUtils.getInstance().getData("password", "");
+        String ip = (String) SharedPreferencesUtils.getInstance().getData("ip", "");
+        String httpPort = (String) SharedPreferencesUtils.getInstance().getData("httpPort", "");
+        String serviceName = (String) SharedPreferencesUtils.getInstance().getData("serviceName", "");
+        String username = (String) SharedPreferencesUtils.getInstance().getData("userName", "");
+        String password = (String) SharedPreferencesUtils.getInstance().getData("passWord", "");
+        etIp.setText(ip);
+        etHttpPort.setText(httpPort);
+        etServiceName.setText(serviceName);
         etUsername.setText(username);
         etPassword.setText(password);
+        ViewUtils.setCharSequence(etIp.getText());
+        ViewUtils.setCharSequence(etHttpPort.getText());
+        ViewUtils.setCharSequence(etServiceName.getText());
         ViewUtils.setCharSequence(etUsername.getText());
         ViewUtils.setCharSequence(etPassword.getText());
+        (findViewById(R.id.iv_deleteIp)).setOnClickListener(onClickListener);
+        (findViewById(R.id.iv_deleteHttpPort)).setOnClickListener(onClickListener);
+        (findViewById(R.id.iv_deleteServiceName)).setOnClickListener(onClickListener);
         (findViewById(R.id.iv_deleteName)).setOnClickListener(onClickListener);
         ivInvisible.setOnClickListener(onClickListener);
         (findViewById(R.id.btn_login)).setOnClickListener(onClickListener);
@@ -69,6 +84,15 @@ public class LoginActivity extends BaseActivity {
 
     private View.OnClickListener onClickListener = (view) -> {
         switch (view.getId()) {
+            case R.id.iv_deleteIp:
+                etIp.setText("");
+                break;
+            case R.id.iv_deleteHttpPort:
+                etHttpPort.setText("");
+                break;
+            case R.id.iv_deleteServiceName:
+                etServiceName.setText("");
+                break;
             case R.id.iv_deleteName:
                 etUsername.setText("");
                 break;
@@ -96,8 +120,23 @@ public class LoginActivity extends BaseActivity {
      * 登录
      */
     private void login() {
+        String ip = etIp.getText().toString().trim();
+        String httpPort = etHttpPort.getText().toString().trim();
+        String serviceName = etServiceName.getText().toString().trim();
         String username = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
+        if (TextUtils.isEmpty(username)) {
+            showToast("Please enter a domain name or IP address");
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            showToast("Please enter http port number");
+            return;
+        }
+        if (TextUtils.isEmpty(serviceName)) {
+            showToast("Please enter the service name");
+            return;
+        }
         if (TextUtils.isEmpty(username)) {
             showToast("Please enter your account");
             return;
@@ -107,10 +146,11 @@ public class LoginActivity extends BaseActivity {
             return;
         }
         if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
-            Map<String, String> energyManagerParams = new HashMap<>(2);
+            Map<String, String> energyManagerParams = new HashMap<>(3);
             energyManagerParams.put("loginName", username);
             energyManagerParams.put("password", password);
-            Call<WaterMeterLoginResult> waterMeterLoginResultCall = NetClient.getInstances(NetClient.getBaseUrl(NetWork.SERVER_HOST_MAIN, NetWork.SERVER_PORT_MAIN, NetWork.PROJECT_MAIN)).getNjMeterApi().loginWaterMeter(energyManagerParams);
+            energyManagerParams.put("type", "meter");
+            Call<WaterMeterLoginResult> waterMeterLoginResultCall = NetClient.getInstances(NetClient.getBaseUrl(ip, httpPort, serviceName)).getNjMeterApi().loginWaterMeter(energyManagerParams);
             waterMeterLoginResultCall.enqueue(mCallbackWaterMeterLogin);
         }
     }
@@ -127,8 +167,12 @@ public class LoginActivity extends BaseActivity {
                     String result = waterMeterLoginResult.getResult();
                     if (result.equals(Constant.SUCCESS)) {
                         //保存账号信息
-                        SharedPreferencesUtils.getInstance().saveData("username", etUsername.getText().toString().trim());
-                        SharedPreferencesUtils.getInstance().saveData("password", etPassword.getText().toString().trim());
+                        SharedPreferencesUtils.getInstance().saveData("ip", etIp.getText().toString().trim());
+                        SharedPreferencesUtils.getInstance().saveData("httpPort", etHttpPort.getText().toString().trim());
+                        SharedPreferencesUtils.getInstance().saveData("serviceName", etServiceName.getText().toString().trim());
+                        SharedPreferencesUtils.getInstance().saveData("userName", etUsername.getText().toString().trim());
+                        SharedPreferencesUtils.getInstance().saveData("passWord", etPassword.getText().toString().trim());
+
                         //登录人信息，用于安装、维修、更换时的操作人信息
                         SharedPreferencesUtils.getInstance().saveData(getString(R.string.Meter_Manager_Name), waterMeterLoginResult.getUserName());
                         switch (waterMeterLoginResult.getPrivilege()) {
